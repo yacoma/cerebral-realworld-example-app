@@ -1,0 +1,41 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "es5",
+        "singleQuote": true,
+        "semi": false
+      }
+    ]
+  },
+  "extends": [
+    "standard",
+    "standard-react",
+    "prettier",
+    "prettier/react"
+  ],
+  "globals": {
+    "localStorage": true,
+    "test": true,
+    "expect": true,
+    "beforeEach": true,
+    "validJWT": true,
+    "expiredJWT": true
+  }
+}

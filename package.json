@@ -1,0 +1,53 @@
+{
+  "name": "cerebral-react-realworld-example-app",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yacoma/cerebral-react-realworld-example-app.git"
+  },
+  "keywords": [
+    "cerebral"
+  ],
+  "author": "Henri Hulski <henri.hulski@gazeta.pl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yacoma/cerebral-react-realworld-example-app/issues"
+  },
+  "homepage": "https://github.com/yacoma/cerebral-react-realworld-example-app#readme",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "lint": "eslint \"src/**/*.js\"",
+    "format": "npm run lint -- --fix"
+  },
+  "dependencies": {
+    "@cerebral/http": "^3.6.0",
+    "@cerebral/react": "^2.6.0",
+    "@cerebral/router": "^2.6.0",
+    "@cerebral/storage": "^3.4.0",
+    "cerebral": "^3.6.0",
+    "es6-error": "^4.0.2",
+    "jwt-decode": "^2.2.0",
+    "marksy": "^5.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.0.17",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-config-standard-react": "^5.0.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-prettier": "^2.3.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-react": "^7.5.1",
+    "eslint-plugin-standard": "^3.0.1",
+    "jest-localstorage-mock": "^2.1.0",
+    "prettier": "1.8.2",
+    "xhr-mock": "^1.9.1"
+  }
+}
