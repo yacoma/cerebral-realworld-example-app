@@ -16,9 +16,9 @@ export default sequence('Change settings', [
       set(state`auth.settingsForm.user.bio`, ''),
       set(state`auth.settingsForm.user.email`, ''),
       set(state`auth.settingsForm.user.password`, ''),
-      set(state`app.errorMessages`, []),
+      set(state`errorMessages`, []),
       set(state`auth.settingsFormIsLoading`, false),
-      redirectToSignal('app.homeRouted'),
+      redirectToSignal('homeRouted'),
     ],
     error: [
       set(state`auth.settingsForm.user.password`, ''),

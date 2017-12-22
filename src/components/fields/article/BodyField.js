@@ -5,7 +5,7 @@ import { state, props, signal } from 'cerebral/tags'
 export default connect(
   {
     field: state`${props`path`}`,
-    fieldChanged: signal`app.fieldChanged`,
+    fieldChanged: signal`fieldChanged`,
   },
   function BodyField({ path, field, fieldChanged }) {
     return (

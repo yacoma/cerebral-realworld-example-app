@@ -1,9 +1,11 @@
+import { Module } from 'cerebral'
+
 import signinUser from './sequences/signinUser'
 import registerUser from './sequences/registerUser'
 import changeSettings from './sequences/changeSettings'
 import logoutUser from './sequences/logoutUser'
 
-export default {
+export default Module({
   signals: {
     loginFormSubmitted: signinUser,
     registerFormSubmitted: registerUser,
@@ -45,4 +47,4 @@ export default {
     },
     settingsFormIsLoading: false,
   },
-}
+})

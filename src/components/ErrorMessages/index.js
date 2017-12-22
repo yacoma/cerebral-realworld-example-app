@@ -4,7 +4,7 @@ import { state } from 'cerebral/tags'
 
 export default connect(
   {
-    errorMessages: state`app.errorMessages`,
+    errorMessages: state`errorMessages`,
   },
   function ErrorList({ errorMessages }) {
     if (Array.isArray(errorMessages) && errorMessages.length) {

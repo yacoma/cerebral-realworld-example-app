@@ -30,8 +30,8 @@ test('should initialize user state', () => {
       },
     },
     modules: { storage: StorageModule({ target: localStorage }) },
-    providers: [
-      HttpProvider({
+    providers: {
+      http: HttpProvider({
         baseUrl: '/api',
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
@@ -39,7 +39,7 @@ test('should initialize user state', () => {
           Authorization: 'Token ' + validJWT,
         },
       }),
-    ],
+    },
   }).then(({ state }) => [
     expect(state.auth.authenticated).toBe(true),
     expect(state.auth.currentUser.email).toBe('test@example.com'),

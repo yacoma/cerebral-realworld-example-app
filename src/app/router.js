@@ -4,23 +4,23 @@ export default Router({
   routes: [
     {
       path: '/article/:slug',
-      signal: 'app.articleRouted',
+      signal: 'articleRouted',
     },
     {
       path: '/editor/:slug',
-      signal: 'app.editorRouted',
+      signal: 'editorRouted',
     },
     {
       path: '/@:username/:favorites',
-      signal: 'app.profileRouted',
+      signal: 'profileRouted',
     },
     {
       path: '/:page',
-      signal: 'app.pageRouted',
+      signal: 'pageRouted',
     },
     {
       path: '/',
-      signal: 'app.homeRouted',
+      signal: 'homeRouted',
     },
   ],
   onlyHash: true,

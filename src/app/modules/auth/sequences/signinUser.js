@@ -14,15 +14,15 @@ export default sequence('Sign-in user', [
     success: [
       set(state`auth.loginForm.user.email`, ''),
       set(state`auth.loginForm.user.password`, ''),
-      set(state`app.errorMessages`, []),
+      set(state`errorMessages`, []),
       initUser,
       set(state`auth.loginFormIsLoading`, false),
-      when(state`app.lastVisited`),
+      when(state`lastVisited`),
       {
-        true: redirectToSignal('app.pageRouted', {
-          page: state`app.lastVisited`,
+        true: redirectToSignal('pageRouted', {
+          page: state`lastVisited`,
         }),
-        false: redirectToSignal('app.homeRouted'),
+        false: redirectToSignal('homeRouted'),
       },
     ],
     error: [

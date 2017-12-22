@@ -15,15 +15,15 @@ export default sequence('Register new user', [
       set(state`auth.registerForm.user.username`, ''),
       set(state`auth.registerForm.user.email`, ''),
       set(state`auth.registerForm.user.password`, ''),
-      set(state`app.errorMessages`, []),
+      set(state`errorMessages`, []),
       initUser,
       set(state`auth.registerFormIsLoading`, false),
-      when(state`app.lastVisited`),
+      when(state`lastVisited`),
       {
-        true: redirectToSignal('app.pageRouted', {
-          page: state`app.lastVisited`,
+        true: redirectToSignal('pageRouted', {
+          page: state`lastVisited`,
         }),
-        false: redirectToSignal('app.homeRouted'),
+        false: redirectToSignal('homeRouted'),
       },
     ],
     error: [

@@ -17,8 +17,8 @@ test('should remove current user state', () => {
       },
     },
     modules: { storage: StorageModule({ target: localStorage }) },
-    providers: [
-      HttpProvider({
+    providers: {
+      http: HttpProvider({
         baseUrl: '/api',
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
@@ -26,7 +26,7 @@ test('should remove current user state', () => {
           Authorization: 'Token ' + validJWT,
         },
       }),
-    ],
+    },
   }).then(({ state }) => [
     expect(state.auth.authenticated).toBe(false),
     expect(state.auth.currentUser.email).toBe(''),

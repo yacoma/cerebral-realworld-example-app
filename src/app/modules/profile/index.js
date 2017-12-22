@@ -1,6 +1,8 @@
+import { Module } from 'cerebral'
+
 import toggleFollowUser from './sequences/toggleFollowUser'
 
-export default {
+export default Module({
   signals: {
     toggleFollowClicked: toggleFollowUser,
   },
@@ -14,4 +16,4 @@ export default {
     },
     currentTab: 'myArticles',
   },
-}
+})
