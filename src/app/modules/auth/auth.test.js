@@ -1,34 +1,14 @@
 import mock from 'xhr-mock'
-
-import http from '@cerebral/http'
-import storage from '@cerebral/storage'
 import { CerebralTest } from 'cerebral/test'
 
-import app from '../app'
-import auth from '.'
+import app from '../..'
 
 let cerebral
 
 beforeEach(() => {
   localStorage.removeItem('jwtHeader')
   mock.setup()
-  cerebral = CerebralTest({
-    modules: {
-      app,
-      auth,
-      storage: storage({ target: localStorage }),
-    },
-    providers: [
-      http({
-        baseUrl: '/api',
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-          Accept: 'application/json',
-          Authorization: 'Token ' + validJWT,
-        },
-      }),
-    ],
-  })
+  cerebral = CerebralTest(app)
 })
 
 test('should login', () => {
@@ -125,7 +105,7 @@ test('should login on registration', () => {
   cerebral.setState('auth.registerForm.user.username', 'Tester')
   cerebral.setState('auth.registerForm.user.email', 'test@example.com')
   cerebral.setState('auth.registerForm.user.password', 'test0123')
-  cerebral.setState('app.lastVisited', 'settings')
+  cerebral.setState('lastVisited', 'settings')
 
   return cerebral
     .runSignal('auth.registerFormSubmitted')
@@ -134,7 +114,7 @@ test('should login on registration', () => {
       expect(state.auth.currentUser.email).toBe('test@example.com'),
       expect(state.auth.currentUser.username).toBe('Tester'),
       expect(localStorage.getItem('jwtHeader')).toBe('"' + validJWT + '"'),
-      expect(state.app.currentPage).toBe('settings'),
+      expect(state.currentPage).toBe('settings'),
       expect(state.auth.registerForm.user.username).toBe(''),
       expect(state.auth.registerForm.user.email).toBe(''),
       expect(state.auth.registerForm.user.password).toBe(''),
@@ -165,8 +145,6 @@ test('should not register when email exists', () => {
       expect(state.auth.registerForm.user.username).toBe('Tester'),
       expect(state.auth.registerForm.user.email).toBe('test@example.com'),
       expect(state.auth.registerForm.user.password).toBe(''),
-      expect(state.app.errorMessages).toContain(
-        'email: has already been taken'
-      ),
+      expect(state.errorMessages).toContain('email: has already been taken'),
     ])
 })

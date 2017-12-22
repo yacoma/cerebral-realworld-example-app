@@ -8,5 +8,5 @@ import removeUser from '../actions/removeUser'
 export default sequence('Log user out', [
   set(state`auth.loginFormIsLoading`, false),
   removeUser,
-  redirectToSignal('app.homeRouted'),
+  redirectToSignal('homeRouted'),
 ])

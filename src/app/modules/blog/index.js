@@ -1,10 +1,12 @@
+import { Module } from 'cerebral'
+
 import editArticle from './sequences/editArticle'
 import postComment from './sequences/postComment'
 import toggleFavoriteArticle from './sequences/toggleFavoriteArticle'
 import showArticlesByTag from './sequences/showArticlesByTag'
 import deleteComment from './sequences/deleteComment'
 
-export default {
+export default Module({
   signals: {
     editorFormSubmitted: editArticle,
     commentFormSubmitted: postComment,
@@ -35,4 +37,4 @@ export default {
     },
     postCommentFormIsLoading: false,
   },
-}
+})

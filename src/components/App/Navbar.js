@@ -4,7 +4,7 @@ import { state } from 'cerebral/tags'
 
 export default connect(
   {
-    currentPage: state`app.currentPage`,
+    currentPage: state`currentPage`,
   },
   function Navbar({ currentPage }) {
     return (

@@ -28,6 +28,6 @@ export default function showValidationError(defaultErrorMessage) {
       422: getSchemaValidationErrorMessages,
       otherwise: set(props`errorMessages`, [defaultErrorMessage]),
     },
-    set(state`app.errorMessages`, props`errorMessages`),
+    set(state`errorMessages`, props`errorMessages`),
   ])
 }
