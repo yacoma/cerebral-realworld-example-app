@@ -32,7 +32,7 @@ export default Controller({
   },
   providers: [
     HttpProvider({
-      baseUrl: "https://conduit.productionready.io/api",
+      baseUrl: 'https://conduit.productionready.io/api',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
         Accept: 'application/json',
