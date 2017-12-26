@@ -3,12 +3,16 @@ import { set, equals } from 'cerebral/operators'
 import { state } from 'cerebral/tags'
 import { redirectToSignal } from '@cerebral/router/operators'
 
-import fetchArticles from './modules/blog/sequences/fetchArticles'
-import fetchTags from './modules/blog/sequences/fetchTags'
-import fetchCurrentArticle from './modules/blog/sequences/fetchCurrentArticle'
-import fetchProfile from './modules/profile/sequences/fetchProfile'
-import fetchFavoritedArticles from './modules/profile/sequences/fetchFavoritedArticles'
-import fetchCreatedArticles from './modules/profile/sequences/fetchCreatedArticles'
+import {
+  fetchArticles,
+  fetchCurrentArticle,
+  fetchTags,
+} from './modules/blog/sequences'
+import {
+  fetchProfile,
+  fetchCreatedArticles,
+  fetchFavoritedArticles,
+} from './modules/profile/sequences'
 import { authenticate } from './actions'
 
 export function routeTo(page, payload = {}) {

@@ -1,16 +1,13 @@
 import { Module } from 'cerebral'
 
-import signinUser from './sequences/signinUser'
-import registerUser from './sequences/registerUser'
-import changeSettings from './sequences/changeSettings'
-import logoutUser from './sequences/logoutUser'
+import * as sequences from './sequences'
 
 export default Module({
   signals: {
-    loginFormSubmitted: signinUser,
-    registerFormSubmitted: registerUser,
-    settingsFormSubmitted: changeSettings,
-    logoutButtonClicked: logoutUser,
+    loginFormSubmitted: sequences.signinUser,
+    registerFormSubmitted: sequences.registerUser,
+    settingsFormSubmitted: sequences.changeSettings,
+    logoutButtonClicked: sequences.logoutUser,
   },
 
   state: {

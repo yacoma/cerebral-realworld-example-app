@@ -1,11 +1,12 @@
 import storage from '@cerebral/storage'
 import { runAction } from 'cerebral/test'
-import { initApp } from './actions'
+
+import * as actions from './actions'
 
 test('should initialize app state when no exp claim', () => {
   localStorage.setItem('jwtHeader', JSON.stringify(validJWT))
 
-  return runAction(initApp, {
+  return runAction(actions.initApp, {
     state: {
       auth: {
         authenticated: false,
@@ -21,7 +22,7 @@ test('should initialize app state when no exp claim', () => {
 test('should initialize app state when exp claim is valid', () => {
   localStorage.setItem('jwtHeader', JSON.stringify(validJWT))
 
-  return runAction(initApp, {
+  return runAction(actions.initApp, {
     state: {
       auth: {
         authenticated: false,
@@ -37,7 +38,7 @@ test('should initialize app state when exp claim is valid', () => {
 test('should fail initialize app state when token expired', () => {
   localStorage.setItem('jwtHeader', JSON.stringify(expiredJWT))
 
-  return runAction(initApp, {
+  return runAction(actions.initApp, {
     state: {
       auth: {
         authenticated: false,
