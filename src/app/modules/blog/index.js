@@ -1,18 +1,14 @@
 import { Module } from 'cerebral'
 
-import editArticle from './sequences/editArticle'
-import postComment from './sequences/postComment'
-import toggleFavoriteArticle from './sequences/toggleFavoriteArticle'
-import showArticlesByTag from './sequences/showArticlesByTag'
-import deleteComment from './sequences/deleteComment'
+import * as sequences from './sequences'
 
 export default Module({
   signals: {
-    editorFormSubmitted: editArticle,
-    commentFormSubmitted: postComment,
-    toggleFavoriteClicked: toggleFavoriteArticle,
-    tagClicked: showArticlesByTag,
-    commentDelButtonClicked: deleteComment,
+    editorFormSubmitted: sequences.editArticle,
+    commentFormSubmitted: sequences.postComment,
+    toggleFavoriteClicked: sequences.toggleFavoriteArticle,
+    tagClicked: sequences.showArticlesByTag,
+    commentDelButtonClicked: sequences.deleteComment,
   },
 
   state: {

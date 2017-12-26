@@ -1,10 +1,10 @@
 import { Module } from 'cerebral'
 
-import toggleFollowUser from './sequences/toggleFollowUser'
+import * as sequences from './sequences'
 
 export default Module({
   signals: {
-    toggleFollowClicked: toggleFollowUser,
+    toggleFollowClicked: sequences.toggleFollowUser,
   },
 
   state: {

@@ -1,4 +1,3 @@
-/* eslint-env mocha */
 import { AuthenticationError } from './errors'
 
 test('should instanciate AuthenticationError', () => {

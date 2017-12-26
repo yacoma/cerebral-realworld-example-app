@@ -19,7 +19,7 @@ function getSchemaValidationErrorMessages({ props }) {
   return { errorMessages }
 }
 
-export default function showValidationError(defaultErrorMessage) {
+export function showValidationError(defaultErrorMessage) {
   return sequence('Show validation error', [
     equals(props`error.response.status`),
     {
