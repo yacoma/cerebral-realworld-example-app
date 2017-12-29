@@ -1,5 +1,5 @@
 import { sequence } from 'cerebral'
-import { state } from 'cerebral/tags'
+import { state, resolveObject } from 'cerebral/tags'
 import { set, when } from 'cerebral/operators'
 import { httpPost, httpPut } from '@cerebral/http/operators'
 import { redirectToSignal } from '@cerebral/router/operators'
@@ -20,9 +20,12 @@ export const registerUser = sequence('Register new user', [
       set(state`auth.registerFormIsLoading`, false),
       when(state`lastVisited`),
       {
-        true: redirectToSignal('pageRouted', {
-          page: state`lastVisited`,
-        }),
+        true: redirectToSignal(
+          'pageRouted',
+          resolveObject({
+            page: state`lastVisited`,
+          })
+        ),
         false: redirectToSignal('homeRouted'),
       },
     ],
@@ -46,9 +49,12 @@ export const signinUser = sequence('Sign-in user', [
       set(state`auth.loginFormIsLoading`, false),
       when(state`lastVisited`),
       {
-        true: redirectToSignal('pageRouted', {
-          page: state`lastVisited`,
-        }),
+        true: redirectToSignal(
+          'pageRouted',
+          resolveObject({
+            page: state`lastVisited`,
+          })
+        ),
         false: redirectToSignal('homeRouted'),
       },
     ],
