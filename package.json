@@ -23,11 +23,11 @@
     "format": "npm run lint -- --fix"
   },
   "dependencies": {
-    "@cerebral/http": "^4.0.0",
-    "@cerebral/react": "^3.0.0",
-    "@cerebral/router": "^3.0.0",
-    "@cerebral/storage": "^4.0.0",
-    "cerebral": "^4.0.0",
+    "@cerebral/http": "^4.0.1",
+    "@cerebral/react": "^3.0.1",
+    "@cerebral/router": "^3.0.1",
+    "@cerebral/storage": "^4.0.1",
+    "cerebral": "^4.0.1",
     "jwt-decode": "^2.2.0",
     "marksy": "^6.0.1",
     "react": "^16.2.0",
