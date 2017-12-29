@@ -18,9 +18,6 @@ export default connect(
     toggleFavoriteClicked,
   }) {
     author.uri = encodeURIComponent(`@${author.username}`)
-    console.log('Article: ')
-    console.log(slug)
-    console.log(article)
     return (
       <div className="article-meta">
         <a href={`/#/${author.uri}`}>
