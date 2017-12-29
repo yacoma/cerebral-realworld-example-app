@@ -14,7 +14,7 @@ export default connect(
           className="form-control form-control-lg"
           type="password"
           placeholder="New Password"
-          value="{field.value}"
+          value={field}
           onChange={e => fieldChanged({ path, value: e.target.value })}
         />
       </fieldset>

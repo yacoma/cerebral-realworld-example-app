@@ -35,6 +35,8 @@
     "test": true,
     "expect": true,
     "beforeEach": true,
+    "afterEach": true,
+    "apiUrl": true,
     "validJWT": true,
     "expiredJWT": true
   }

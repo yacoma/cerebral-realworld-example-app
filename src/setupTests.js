@@ -1,5 +1,8 @@
 import 'jest-localstorage-mock'
 
+const apiUrl = 'https://conduit.productionready.io/api'
+global.apiUrl = apiUrl
+
 const validJWT =
   'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGV4YW1wbGUuY29tIiw' +
   'idXNlcm5hbWUiOiJUZXN0ZXIifQ.TXP3ekXsYN0tBkYoJubFQPAITecmh1LXQ1-O0svFo3k'
