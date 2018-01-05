@@ -1,11 +1,16 @@
 import { sequence } from 'cerebral'
 import { props, state } from 'cerebral/tags'
 import { set } from 'cerebral/operators'
+import { redirectToSignal } from '@cerebral/router/operators'
 
 import * as actions from './actions'
 import * as factories from './factories'
 
 export const initialize = sequence('Initiate App', [actions.initApp])
+
+export const redirectToLogin = sequence('Redirect to login', [
+  redirectToSignal('pageRouted', { page: 'login' }),
+])
 
 export const routeToHome = sequence('Route to home', [
   factories.routeTo('home'),

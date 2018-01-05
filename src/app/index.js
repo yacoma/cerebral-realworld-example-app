@@ -1,6 +1,5 @@
 import { Module } from 'cerebral'
 import HttpProvider from '@cerebral/http'
-import { redirectToSignal } from '@cerebral/router/operators'
 import storage from '@cerebral/storage'
 
 import blog from './modules/blog'
@@ -50,8 +49,6 @@ export default Module(({ controller }) => {
         },
       }),
     },
-    catch: [
-      [AuthenticationError, redirectToSignal('pageRouted', { page: 'login' })],
-    ],
+    catch: [[AuthenticationError, sequences.redirectToLogin]],
   }
 })
