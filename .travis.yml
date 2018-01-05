@@ -1,0 +1,15 @@
+sudo: false
+language: node_js
+node_js: '6'
+cache:
+  directories:
+  - node_modules
+notifications:
+  email: false
+script:
+- |
+  if [[ $SKIP_TESTS != 'true' ]]; then
+    npm prune
+    npm run lint
+    npm test
+  fi
