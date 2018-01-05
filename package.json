@@ -29,7 +29,7 @@
     "@cerebral/storage": "^4.0.1",
     "cerebral": "^4.0.1",
     "jwt-decode": "^2.2.0",
-    "marksy": "^6.0.1",
+    "marksy": "^6.0.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17",
