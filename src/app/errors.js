@@ -1,15 +1,8 @@
-import ES6Error from 'es6-error'
+import { CerebralError } from 'cerebral'
 
-export class AuthenticationError extends ES6Error {
+export class AuthenticationError extends CerebralError {
   constructor(message = '') {
     super(message)
     this.name = 'AuthenticationError'
-  }
-  toJSON() {
-    return {
-      name: this.name,
-      message: this.message,
-      stack: this.stack,
-    }
   }
 }
