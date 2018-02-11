@@ -45,7 +45,7 @@ export default Module(({ controller }) => {
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           Accept: 'application/json',
-          Authorization: 'Token ' + jwtHeader,
+          Authorization: jwtHeader ? 'Token ' + jwtHeader : '',
         },
       }),
     },
