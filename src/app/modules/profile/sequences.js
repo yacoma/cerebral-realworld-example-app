@@ -2,20 +2,27 @@ import { sequence } from 'cerebral'
 import { state, string, props } from 'cerebral/tags'
 import { set, when } from 'cerebral/operators'
 import { httpGet, httpDelete, httpPost } from '@cerebral/http/operators'
+import { redirectToSignal } from '@cerebral/router/operators'
 
-import { mergeArticles } from '../blog/actions'
+import { setArticles, clearArticles } from '../blog/actions'
 
 export const toggleFollowUser = sequence('Toggle follow user', [
-  when(state`profile.following`),
+  when(state`auth.authenticated`),
   {
     true: [
-      httpDelete(string`/profiles/${props`username`}/follow`),
-      set(state`profile.following`, false),
+      when(state`profile.following`),
+      {
+        true: [
+          httpDelete(string`/profiles/${props`username`}/follow`),
+          set(state`profile.following`, false),
+        ],
+        false: [
+          httpPost(string`/profiles/${props`username`}/follow`),
+          set(state`profile.following`, true),
+        ],
+      },
     ],
-    false: [
-      httpPost(string`/profiles/${props`username`}/follow`),
-      set(state`profile.following`, true),
-    ],
+    false: redirectToSignal('pageRouted', { page: 'login' }),
   },
 ])
 
@@ -25,15 +32,17 @@ export const fetchProfile = sequence('Fetch profile', [
 ])
 
 export const fetchCreatedArticles = sequence('Fetch created articles', [
+  clearArticles,
   httpGet(string`/articles?author=${state`profile.currentProfile.username`}`),
-  mergeArticles,
+  setArticles,
   set(state`profile.currentTab`, 'myArticles'),
 ])
 
 export const fetchFavoritedArticles = sequence('Fetch favorited articles', [
+  clearArticles,
   httpGet(
     string`/articles?favorited=${state`profile.currentProfile.username`}`
   ),
-  mergeArticles,
+  setArticles,
   set(state`profile.currentTab`, 'favoritedArticles'),
 ])

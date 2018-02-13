@@ -9,7 +9,7 @@ export default connect(
     comments: state`blog.articles.${state`blog.currentArticleSlug`}.comments`,
   },
   function CommentList({ comments }) {
-    if (!comments || !comments.length) {
+    if (!comments || !Object.keys(comments).length) {
       return null
     }
 
