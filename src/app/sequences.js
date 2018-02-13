@@ -3,8 +3,8 @@ import { props, state } from 'cerebral/tags'
 import { set } from 'cerebral/operators'
 import { redirectToSignal } from '@cerebral/router/operators'
 
+import routeTo from './routeTo'
 import * as actions from './actions'
-import * as factories from './factories'
 
 export const initialize = sequence('Initiate App', [actions.initApp])
 
@@ -13,26 +13,31 @@ export const redirectToLogin = sequence('Redirect to login', [
 ])
 
 export const routeToHome = sequence('Route to home', [
-  factories.routeTo('home'),
+  set(props`page`, 'home'),
+  routeTo,
 ])
 
-export const routeToPage = sequence('Route to page', [
-  factories.routeTo(props`page`),
-])
+export const routeToPage = sequence('Route to page', [routeTo])
 
 export const routeToArticle = sequence('Route to article', [
-  factories.routeTo('article', { slug: props`slug` }),
+  set(props`page`, 'article'),
+  routeTo,
 ])
 
 export const routeToEditor = sequence('Route to editor', [
-  factories.routeTo('editor', { slug: props`slug` }),
+  set(props`page`, 'editor'),
+  routeTo,
 ])
 
 export const routeToProfile = sequence('Route to profile', [
-  factories.routeTo('profile', {
-    username: props`username`,
-    favorites: props`favorites`,
-  }),
+  set(props`page`, 'profile'),
+  routeTo,
+])
+
+export const routeToFavorites = sequence('Route to favorites', [
+  set(props`page`, 'profile'),
+  set(props`favorites`, true),
+  routeTo,
 ])
 
 export const changeField = sequence('Change field', [

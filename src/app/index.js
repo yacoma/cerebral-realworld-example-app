@@ -30,6 +30,7 @@ export default Module(({ controller }) => {
       articleRouted: sequences.routeToArticle,
       editorRouted: sequences.routeToEditor,
       profileRouted: sequences.routeToProfile,
+      favoritesRouted: sequences.routeToFavorites,
       fieldChanged: sequences.changeField,
     },
     modules: {

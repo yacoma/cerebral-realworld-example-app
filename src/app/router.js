@@ -11,7 +11,11 @@ export default Router({
       signal: 'editorRouted',
     },
     {
-      path: '/@:username/:favorites',
+      path: '/@:username/favorites',
+      signal: 'favoritesRouted',
+    },
+    {
+      path: '/@:username',
       signal: 'profileRouted',
     },
     {

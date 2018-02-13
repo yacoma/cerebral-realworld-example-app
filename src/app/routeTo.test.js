@@ -1,8 +1,9 @@
 import { runSignal } from 'cerebral/test'
-import * as factories from './factories'
+import routeTo from './routeTo'
 
 test('route to login should not change lastVisited', () => {
-  return runSignal(factories.routeTo('login'), {
+  return runSignal(routeTo, {
+    props: { page: 'login' },
     state: { lastVisited: 'settings' },
   }).then(({ state }) => [
     expect(state.currentPage).toBe('login'),
@@ -11,7 +12,8 @@ test('route to login should not change lastVisited', () => {
 })
 
 test('route to register should not change lastVisited', () => {
-  return runSignal(factories.routeTo('register'), {
+  return runSignal(routeTo, {
+    props: { page: 'register' },
     state: { lastVisited: 'settings' },
   }).then(({ state }) => [
     expect(state.currentPage).toBe('register'),
