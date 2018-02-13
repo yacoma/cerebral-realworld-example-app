@@ -7,18 +7,21 @@ import {
   httpPut,
   httpDelete,
 } from '@cerebral/http/operators'
+import { redirectToSignal } from '@cerebral/router/operators'
 
 import { fetchProfile } from '../profile/sequences'
 import * as actions from './actions'
 
 export const fetchArticles = sequence('Fetch articles', [
+  actions.clearArticles,
   httpGet('/articles'),
-  actions.mergeArticles,
+  actions.setArticles,
 ])
 
 const fetchArticlesByTag = sequence('Fetch articles by tag', [
+  actions.clearArticles,
   httpGet(string`/articles?tag=${state`blog.currentTag`}`),
-  actions.mergeArticles,
+  actions.setArticles,
 ])
 
 export const showArticlesByTag = sequence('Show articles by tag', [
@@ -28,8 +31,9 @@ export const showArticlesByTag = sequence('Show articles by tag', [
 ])
 
 export const fetchCurrentArticle = sequence('Fetch current article', [
+  actions.clearArticles,
   httpGet(string`/articles/${state`blog.currentArticleSlug`}`),
-  actions.mergeArticles,
+  actions.setArticles,
   set(
     state`profile.currentProfile.username`,
     props`response.result.article.author.username`
@@ -39,6 +43,7 @@ export const fetchCurrentArticle = sequence('Fetch current article', [
 
 export const editArticle = sequence('Edit article', [
   set(state`blog.editorFormIsLoading`, true),
+  actions.clearArticles,
   when(state`blog.currentArticleSlug`),
   {
     true: httpPut(
@@ -51,21 +56,27 @@ export const editArticle = sequence('Edit article', [
   set(state`blog.editorForm.article.description`, ''),
   set(state`blog.editorForm.article.body`, ''),
   set(state`blog.editorForm.article.tagList`, ''),
-  actions.mergeArticles,
+  actions.setArticles,
   set(state`blog.editorFormIsLoading`, false),
 ])
 
 export const toggleFavoriteArticle = sequence('Toggle favorite article', [
-  when(state`blog.articles.${props`slug`}.favorited`),
+  when(state`auth.authenticated`),
   {
     true: [
-      httpDelete(string`/articles/${props`slug`}/favorite`),
-      set(state`blog.articles.${props`slug`}.favorited`, false),
+      when(state`blog.articles.${props`slug`}.favorited`),
+      {
+        true: [
+          httpDelete(string`/articles/${props`slug`}/favorite`),
+          set(state`blog.articles.${props`slug`}.favorited`, false),
+        ],
+        false: [
+          httpPost(string`/articles/${props`slug`}/favorite`),
+          set(state`blog.articles.${props`slug`}.favorited`, true),
+        ],
+      },
     ],
-    false: [
-      httpPost(string`/articles/${props`slug`}/favorite`),
-      set(state`blog.articles.${props`slug`}.favorited`, true),
-    ],
+    false: redirectToSignal('pageRouted', { page: 'login' }),
   },
 ])
 

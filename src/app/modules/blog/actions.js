@@ -1,4 +1,8 @@
-export function mergeArticles({ props, state }) {
+export function clearArticles({ props, state }) {
+  state.set('blog.articles', {})
+}
+
+export function setArticles({ props, state }) {
   let articles = []
   if (props.response.result.articles) {
     articles = props.response.result.articles
@@ -6,11 +10,7 @@ export function mergeArticles({ props, state }) {
     articles = [props.response.result.article]
   }
   for (const article of articles) {
-    if (article.slug in state.get('blog.articles')) {
-      state.merge(`blog.articles.${article.slug}`, article)
-    } else {
-      state.set(`blog.articles.${article.slug}`, article)
-    }
+    state.set(`blog.articles.${article.slug}`, article)
   }
 }
 

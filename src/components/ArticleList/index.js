@@ -13,7 +13,7 @@ export default connect(
       return <div className="article-preview">Loading articles...</div>
     }
 
-    if (!articles.length) {
+    if (!Object.keys(articles).length) {
       return <div className="article-preview">No articles are here... yet.</div>
     }
 

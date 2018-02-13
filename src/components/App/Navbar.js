@@ -16,7 +16,7 @@ export default connect(
           <ul className="nav navbar-nav pull-xs-right">
             <li className="nav-item">
               <a
-                className={`nav-link${currentPage === 'home' && ' active'}`}
+                className={`nav-link${currentPage === 'home' ? ' active' : ''}`}
                 href="/#/"
               >
                 Home
@@ -24,7 +24,9 @@ export default connect(
             </li>
             <li className="nav-item">
               <a
-                className={`nav-link${currentPage === 'login' && ' active'}`}
+                className={`nav-link${
+                  currentPage === 'login' ? ' active' : ''
+                }`}
                 href="/#/login"
               >
                 Sign in
@@ -32,7 +34,9 @@ export default connect(
             </li>
             <li className="nav-item">
               <a
-                className={`nav-link${currentPage === 'register' && ' active'}`}
+                className={`nav-link${
+                  currentPage === 'register' ? ' active' : ''
+                }`}
                 href="/#/register"
               >
                 Sign up

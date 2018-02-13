@@ -1,7 +1,8 @@
 import { sequence } from 'cerebral'
 import { props, state } from 'cerebral/tags'
 import { equals, set } from 'cerebral/operators'
-import { redirectToSignal } from '@cerebral/router/operators'
+
+import { redirectToLogin } from '../../sequences'
 
 function getValidationErrorMessages({ props }) {
   const errorMessages = Object.keys(props.error.response.result.errors).reduce(
@@ -24,13 +25,10 @@ export function showValidationError(defaultErrorMessage) {
   return sequence('Show validation error', [
     equals(props`error.response.status`),
     {
-      401: [
-        set(props`errorMessages`, 'Authorization needed'),
-        redirectToSignal('pageRouted', { page: 'login' }),
-      ],
+      401: [set(props`errorMessages`, 'Authorization needed'), redirectToLogin],
       403: [
         set(props`errorMessages`, 'Request is not allowed'),
-        redirectToSignal('pageRouted', { page: 'login' }),
+        redirectToLogin,
       ],
       422: getValidationErrorMessages,
       otherwise: set(props`errorMessages`, [defaultErrorMessage]),
