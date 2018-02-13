@@ -11,6 +11,20 @@ beforeEach(() => {
   cerebral = CerebralTest(app)
 })
 
+test('should be logged out', () => {
+  cerebral.setState('auth.authenticated', true)
+  cerebral.setState('auth.currentUser.email', 'test@example.com')
+  cerebral.setState('auth.currentUser.username', 'Tester')
+
+  return cerebral
+    .runSignal('auth.logoutButtonClicked')
+    .then(({ state }) => [
+      expect(state.auth.authenticated).toBe(false),
+      expect(state.auth.currentUser.email).toBe(''),
+      expect(state.auth.currentUser.username).toBe(''),
+    ])
+})
+
 test('should login', async () => {
   expect.assertions(6)
 
@@ -73,20 +87,6 @@ test('should not log in when wrong password', async () => {
       expect(state.auth.loginForm.user.email).toBe('test@example.com'),
       expect(state.auth.loginForm.user.password).toBe(''),
       expect(state.errorMessages).toContain('email or password: is invalid'),
-    ])
-})
-
-test('should be logged out', () => {
-  cerebral.setState('auth.authenticated', true)
-  cerebral.setState('auth.currentUser.email', 'test@example.com')
-  cerebral.setState('auth.currentUser.username', 'Tester')
-
-  return cerebral
-    .runSignal('auth.logoutButtonClicked')
-    .then(({ state }) => [
-      expect(state.auth.authenticated).toBe(false),
-      expect(state.auth.currentUser.email).toBe(''),
-      expect(state.auth.currentUser.username).toBe(''),
     ])
 })
 
