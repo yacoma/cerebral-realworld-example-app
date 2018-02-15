@@ -4,7 +4,8 @@ import { state, props } from 'cerebral/tags'
 import { redirectToSignal } from '@cerebral/router/operators'
 
 import {
-  fetchArticles,
+  fetchAllArticles,
+  fetchArticlesFeed,
   fetchCurrentArticle,
   fetchTags,
 } from './modules/blog/sequences'
@@ -19,7 +20,15 @@ const routeTo = sequence('Route to', [
   set(state`currentPage`, props`page`),
   equals(state`currentPage`),
   {
-    home: [set(state`lastVisited`, 'home'), fetchArticles, fetchTags],
+    home: [
+      set(state`lastVisited`, 'home'),
+      when(state`auth.authenticated`),
+      {
+        true: fetchArticlesFeed,
+        false: fetchAllArticles,
+      },
+      fetchTags,
+    ],
     login: [],
     register: [],
     settings: [set(state`lastVisited`, 'settings'), authenticate],

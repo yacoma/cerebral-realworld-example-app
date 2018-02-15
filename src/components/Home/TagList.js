@@ -12,12 +12,16 @@ export default connect(
       return (
         <div className="tag-list">
           {tags.map(tag => {
+            const handleClick = event => {
+              event.preventDefault()
+              tagClicked({ tag })
+            }
             return (
               <a
                 href=""
                 className="tag-pill tag-default"
                 key={tag}
-                onClick={() => tagClicked({ tag: tag })}
+                onClick={handleClick}
               >
                 {tag}
               </a>

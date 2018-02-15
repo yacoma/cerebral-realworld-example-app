@@ -1,9 +1,9 @@
 export function initUser({ props, state, storage, http }) {
-  const [authtype, token] = props.response.headers.authorization.split(' ', 2)
+  const token = props.response.result.user.token
   storage.set('jwtHeader', token)
   http.updateOptions({
     headers: {
-      Authorization: authtype + ' ' + token,
+      Authorization: 'Token ' + token,
     },
   })
   state.set('auth.authenticated', true)

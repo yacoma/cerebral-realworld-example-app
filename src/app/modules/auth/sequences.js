@@ -4,6 +4,7 @@ import { set, when } from 'cerebral/operators'
 import { httpPost, httpPut } from '@cerebral/http/operators'
 import { redirectToSignal } from '@cerebral/router/operators'
 
+import { fetchArticlesFeed, fetchAllArticles } from '../blog/sequences'
 import * as actions from './actions'
 import * as factories from './factories'
 
@@ -17,6 +18,7 @@ export const registerUser = sequence('Register new user', [
       set(state`auth.registerForm.user.password`, ''),
       set(state`errorMessages`, []),
       actions.initUser,
+      fetchArticlesFeed,
       set(state`auth.registerFormIsLoading`, false),
       when(state`lastVisited`),
       {
@@ -46,6 +48,7 @@ export const signinUser = sequence('Sign-in user', [
       set(state`auth.loginForm.user.password`, ''),
       set(state`errorMessages`, []),
       actions.initUser,
+      fetchArticlesFeed,
       set(state`auth.loginFormIsLoading`, false),
       when(state`lastVisited`),
       {
@@ -69,6 +72,7 @@ export const signinUser = sequence('Sign-in user', [
 export const logoutUser = sequence('Log user out', [
   set(state`auth.loginFormIsLoading`, false),
   actions.removeUser,
+  fetchAllArticles,
   redirectToSignal('homeRouted'),
 ])
 

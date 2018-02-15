@@ -17,15 +17,13 @@ test('should initialize user state', () => {
     },
     props: {
       response: {
-        headers: {
-          authorization: 'Token ' + validJWT,
-        },
         result: {
           user: {
             email: 'test@example.com',
             username: 'Tester',
             image: '',
             bio: '',
+            token: validJWT,
           },
         },
       },

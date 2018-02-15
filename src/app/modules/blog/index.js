@@ -3,17 +3,9 @@ import { Module } from 'cerebral'
 import * as sequences from './sequences'
 
 export default Module({
-  signals: {
-    editorFormSubmitted: sequences.editArticle,
-    commentFormSubmitted: sequences.postComment,
-    toggleFavoriteClicked: sequences.toggleFavoriteArticle,
-    tagClicked: sequences.showArticlesByTag,
-    commentDelButtonClicked: sequences.deleteComment,
-  },
-
   state: {
     currentArticleSlug: '',
-    currentFeed: 'global',
+    currentFeed: 'all',
     currentTag: '',
     articles: {},
     tags: [],
@@ -32,5 +24,13 @@ export default Module({
       },
     },
     postCommentFormIsLoading: false,
+  },
+  signals: {
+    editorFormSubmitted: sequences.editArticle,
+    commentFormSubmitted: sequences.postComment,
+    toggleFavoriteClicked: sequences.toggleFavoriteArticle,
+    tagClicked: sequences.showArticlesByTag,
+    commentDelButtonClicked: sequences.deleteComment,
+    feedTabClicked: sequences.loadFeedTab,
   },
 })

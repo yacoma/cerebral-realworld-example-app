@@ -3,13 +3,6 @@ import { Module } from 'cerebral'
 import * as sequences from './sequences'
 
 export default Module({
-  signals: {
-    loginFormSubmitted: sequences.signinUser,
-    registerFormSubmitted: sequences.registerUser,
-    settingsFormSubmitted: sequences.changeSettings,
-    logoutButtonClicked: sequences.logoutUser,
-  },
-
   state: {
     authenticated: false,
     currentUser: {
@@ -43,5 +36,11 @@ export default Module({
       },
     },
     settingsFormIsLoading: false,
+  },
+  signals: {
+    loginFormSubmitted: sequences.signinUser,
+    registerFormSubmitted: sequences.registerUser,
+    settingsFormSubmitted: sequences.changeSettings,
+    logoutButtonClicked: sequences.logoutUser,
   },
 })
