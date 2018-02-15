@@ -3,10 +3,6 @@ import { Module } from 'cerebral'
 import * as sequences from './sequences'
 
 export default Module({
-  signals: {
-    toggleFollowClicked: sequences.toggleFollowUser,
-  },
-
   state: {
     currentProfile: {
       username: '',
@@ -15,5 +11,8 @@ export default Module({
       following: false,
     },
     currentTab: 'myArticles',
+  },
+  signals: {
+    toggleFollowClicked: sequences.toggleFollowUser,
   },
 })

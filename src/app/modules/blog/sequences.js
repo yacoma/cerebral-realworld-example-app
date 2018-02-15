@@ -1,6 +1,6 @@
 import { sequence } from 'cerebral'
 import { state, string, props } from 'cerebral/tags'
-import { set, when, unset } from 'cerebral/operators'
+import { set, unset, when, equals } from 'cerebral/operators'
 import {
   httpGet,
   httpPost,
@@ -12,22 +12,39 @@ import { redirectToSignal } from '@cerebral/router/operators'
 import { fetchProfile } from '../profile/sequences'
 import * as actions from './actions'
 
-export const fetchArticles = sequence('Fetch articles', [
+export const fetchAllArticles = sequence('Fetch all articles', [
   actions.clearArticles,
+  set(state`blog.currentFeed`, 'all'),
   httpGet('/articles'),
+  actions.setArticles,
+])
+
+export const fetchArticlesFeed = sequence('Fetch created articles', [
+  actions.clearArticles,
+  set(state`blog.currentFeed`, 'feed'),
+  httpGet(string`/articles?author=${state`auth.currentUser.username`}`),
   actions.setArticles,
 ])
 
 const fetchArticlesByTag = sequence('Fetch articles by tag', [
   actions.clearArticles,
+  set(state`blog.currentFeed`, 'tag'),
   httpGet(string`/articles?tag=${state`blog.currentTag`}`),
   actions.setArticles,
 ])
 
 export const showArticlesByTag = sequence('Show articles by tag', [
   set(state`blog.currentTag`, props`tag`),
-  set(state`blog.currentFeed`, 'tag'),
   fetchArticlesByTag,
+])
+
+export const loadFeedTab = sequence('Load feed tab', [
+  set(state`blog.currentFeed`, props`feed`),
+  equals(props`feed`),
+  {
+    feed: fetchArticlesFeed,
+    all: fetchAllArticles,
+  },
 ])
 
 export const fetchCurrentArticle = sequence('Fetch current article', [
