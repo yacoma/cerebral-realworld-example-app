@@ -1,4 +1,4 @@
-export function clearArticles({ props, state }) {
+export function clearArticles({ state }) {
   state.set('blog.articles', {})
 }
 
@@ -18,6 +18,10 @@ export function addComment({ props, state }) {
   const comment = props.response.result.comment
   const slug = state.get('blog.currentArticleSlug')
   state.set(`blog.articles.${slug}.comments.${comment.id}`, comment)
+}
+
+export function clearTags({ state }) {
+  state.set('blog.tags', [])
 }
 
 export function addTags({ props, state }) {
