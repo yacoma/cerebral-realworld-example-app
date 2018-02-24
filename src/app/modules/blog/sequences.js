@@ -22,7 +22,7 @@ export const fetchAllArticles = sequence('Fetch all articles', [
 export const fetchArticlesFeed = sequence('Fetch created articles', [
   actions.clearArticles,
   set(state`blog.currentFeed`, 'feed'),
-  httpGet(string`/articles?author=${state`auth.currentUser.username`}`),
+  httpGet(string`/articles/feed`),
   actions.setArticles,
 ])
 
@@ -118,6 +118,7 @@ export const deleteComment = sequence('Delete Comment', [
 ])
 
 export const fetchTags = sequence('Fetch tags', [
+  actions.clearTags,
   httpGet('/tags'),
   actions.addTags,
 ])
