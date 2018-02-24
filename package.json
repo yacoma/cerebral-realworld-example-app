@@ -36,18 +36,18 @@
     "uuid": "^3.2.1"
   },
   "devDependencies": {
-    "eslint": "^4.17.0",
+    "eslint": "^4.18.1",
     "eslint-config-prettier": "^2.9.0",
-    "eslint-config-standard": "^11.0.0-beta.0",
-    "eslint-config-standard-react": "^5.0.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-node": "^6.0.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-config-standard-react": "^6.0.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-react": "^7.6.1",
+    "eslint-plugin-react": "^7.7.0",
     "eslint-plugin-standard": "^3.0.1",
     "jest-localstorage-mock": "^2.2.0",
     "prettier": "1.10.2",
-    "xhr-mock": "^2.0.3"
+    "xhr-mock": "^2.2.0"
   }
 }
