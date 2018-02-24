@@ -3,6 +3,46 @@ import { CerebralTest } from 'cerebral/test'
 
 import app from '../..'
 
+const articlesJsonResponse = JSON.stringify({
+  articles: [
+    {
+      slug: 'how-to-train-your-dragon',
+      title: 'How to train your dragon',
+      description: 'Ever wonder how?',
+      body: 'It takes a Jacobian',
+      tagList: ['dragons', 'training'],
+      createdAt: '2016-02-18T03:22:56.637Z',
+      updatedAt: '2016-02-18T03:48:35.824Z',
+      favorited: false,
+      favoritesCount: 0,
+      author: {
+        username: 'Tester',
+        bio: 'I work at statefarm',
+        image: 'https://i.stack.imgur.com/xHWG8.jpg',
+        following: false,
+      },
+    },
+    {
+      slug: 'how-to-train-your-dragon-2',
+      title: 'How to train your dragon 2',
+      description: 'So toothless',
+      body: 'It a dragon',
+      tagList: ['dragons', 'training'],
+      createdAt: '2016-02-18T03:22:56.637Z',
+      updatedAt: '2016-02-18T03:48:35.824Z',
+      favorited: false,
+      favoritesCount: 0,
+      author: {
+        username: 'Tester',
+        bio: 'I work at statefarm',
+        image: 'https://i.stack.imgur.com/xHWG8.jpg',
+        following: false,
+      },
+    },
+  ],
+  articlesCount: 2,
+})
+
 let cerebral
 
 beforeEach(() => {
@@ -11,12 +51,23 @@ beforeEach(() => {
   cerebral = CerebralTest(app)
 })
 
-test('should be logged out', () => {
+test('setup', () => {})
+
+test('should be logged out', async () => {
+  expect.assertions(3)
+
+  mock.get(apiUrl + '/articles', (req, res) => {
+    return res
+      .status(200)
+      .header('Content-Type', 'application/json')
+      .body(articlesJsonResponse)
+  })
+
   cerebral.setState('auth.authenticated', true)
   cerebral.setState('auth.currentUser.email', 'test@example.com')
   cerebral.setState('auth.currentUser.username', 'Tester')
 
-  return cerebral
+  await cerebral
     .runSignal('auth.logoutButtonClicked')
     .then(({ state }) => [
       expect(state.auth.authenticated).toBe(false),
@@ -44,6 +95,13 @@ test('should login', async () => {
           },
         })
       )
+  })
+
+  mock.get(apiUrl + '/articles/feed', (req, res) => {
+    return res
+      .status(200)
+      .header('Content-Type', 'application/json')
+      .body(articlesJsonResponse)
   })
 
   cerebral.setState('auth.loginForm.user.email', 'test@example.com')
@@ -109,6 +167,13 @@ test('should login on registration', async () => {
           },
         })
       )
+  })
+
+  mock.get(apiUrl + '/articles/feed', (req, res) => {
+    return res
+      .status(200)
+      .header('Content-Type', 'application/json')
+      .body(articlesJsonResponse)
   })
 
   cerebral.setState('auth.registerForm.user.username', 'Tester')
