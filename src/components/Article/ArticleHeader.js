@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from '@cerebral/react'
 import { state } from 'cerebral/tags'
 
-import ArticleActions from './ArticleActions'
+import ArticleMeta from './ArticleMeta'
 
 export default connect(
   {
@@ -13,7 +13,7 @@ export default connect(
       <div className="banner">
         <div className="container">
           <h1>{title}</h1>
-          <ArticleActions />
+          <ArticleMeta />
         </div>
       </div>
     )

@@ -1,12 +1,19 @@
 import { sequence } from 'cerebral'
 import { props, state } from 'cerebral/tags'
 import { set } from 'cerebral/operators'
+import { httpGet } from '@cerebral/http/operators'
 import { redirectToSignal } from '@cerebral/router/operators'
 
 import routeTo from './routeTo'
 import * as actions from './actions'
 
-export const initialize = sequence('Initiate App', [actions.initApp])
+export const initialize = sequence('Initiate App', [
+  actions.initApp,
+  {
+    authenticated: [httpGet('/user'), actions.setCurrentUser],
+    unauthenticated: [],
+  },
+])
 
 export const redirectToLogin = sequence('Redirect to login', [
   redirectToSignal('pageRouted', { page: 'login' }),

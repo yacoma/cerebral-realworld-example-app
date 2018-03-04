@@ -14,6 +14,18 @@ export function setArticles({ props, state }) {
   }
 }
 
+export function clearComments({ state }) {
+  const slug = state.get('blog.currentArticleSlug')
+  state.set(`blog.articles.${slug}.comments`, {})
+}
+
+export function setComments({ props, state }) {
+  const slug = state.get('blog.currentArticleSlug')
+  for (const comment of props.response.result.comments) {
+    state.set(`blog.articles.${slug}.comments.${comment.id}`, comment)
+  }
+}
+
 export function addComment({ props, state }) {
   const comment = props.response.result.comment
   const slug = state.get('blog.currentArticleSlug')

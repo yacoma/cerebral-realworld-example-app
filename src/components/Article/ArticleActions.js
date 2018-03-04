@@ -7,28 +7,41 @@ export default connect(
     slug: state`blog.currentArticleSlug`,
     article: state`blog.articles.${state`blog.currentArticleSlug`}`,
     author: state`profile.currentProfile`,
+    currentUser: state`auth.currentUser`,
     toggleFollowClicked: signal`profile.toggleFollowClicked`,
     toggleFavoriteClicked: signal`blog.toggleFavoriteClicked`,
+    articleDelButtonClicked: signal`blog.articleDelButtonClicked`,
   },
   function ArticleActions({
     slug,
     article,
     author,
+    currentUser,
     toggleFollowClicked,
     toggleFavoriteClicked,
+    articleDelButtonClicked,
   }) {
-    author.uri = encodeURIComponent(`@${author.username}`)
-    return (
-      <div className="article-meta">
-        <a href={`/#/${author.uri}`}>
-          <img alt="" src={author.image} />
-        </a>
-        <div className="info">
-          <a href={`/#/${author.uri}`} className="author">
-            {author.username}
+    if (author.username === currentUser.username) {
+      return (
+        <span>
+          <a
+            className="btn btn-outline-secondary btn-sm"
+            href={`/#/editor/${slug}`}
+          >
+            <i className="ion-edit" />&nbsp;Edit Article
           </a>
-          <span className="date">{article.createdAt}</span>
-        </div>
+          &nbsp;&nbsp;
+          <button
+            className="btn btn-outline-danger btn-sm"
+            onClick={() => articleDelButtonClicked()}
+          >
+            <i className="ion-trash-a" /> Delete Article
+          </button>
+        </span>
+      )
+    }
+    return (
+      <span>
         <button
           className="btn btn-sm btn-outline-secondary"
           onClick={() => toggleFollowClicked({ username: author.username })}
@@ -45,7 +58,7 @@ export default connect(
           {article.favorited ? 'Unfavorite' : 'Favorite'} Article{' '}
           <span className="counter">({article.favoritesCount})</span>
         </button>
-      </div>
+      </span>
     )
   }
 )

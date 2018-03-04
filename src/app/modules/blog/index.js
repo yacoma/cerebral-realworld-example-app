@@ -27,6 +27,7 @@ export default Module({
   },
   signals: {
     editorFormSubmitted: sequences.editArticle,
+    articleDelButtonClicked: sequences.deleteArticle,
     commentFormSubmitted: sequences.postComment,
     toggleFavoriteClicked: sequences.toggleFavoriteArticle,
     tagClicked: sequences.showArticlesByTag,

@@ -1,16 +1,19 @@
 import React from 'react'
 import { connect } from '@cerebral/react'
-import { state, signal } from 'cerebral/tags'
+import { state } from 'cerebral/tags'
 
 import ArticleList from '../ArticleList'
 import ArticlesToggle from './ArticlesToggle'
+import EditProfileSettings from './EditProfileSettings'
+import FollowUserButton from './FollowUserButton'
 
 export default connect(
   {
     profile: state`profile.currentProfile`,
-    toggleFollowClicked: signal`profile.toggleFollowClicked`,
+    currentUser: state`auth.currentUser`,
   },
-  function Profile({ profile, toggleFollowClicked }) {
+  function Profile({ profile, currentUser }) {
+    const isCurrentUser = profile.username === currentUser.username
     return (
       <div className="profile-page">
         <div className="user-info">
@@ -20,15 +23,8 @@ export default connect(
                 <img alt="" src={profile.image} className="user-img" />
                 <h4>{profile.username}</h4>
                 <p>{profile.bio}</p>
-                <button
-                  className="btn btn-sm btn-outline-secondary action-btn"
-                  onClick={() =>
-                    toggleFollowClicked({ username: profile.username })
-                  }
-                >
-                  <i className="ion-plus-round" />&nbsp;{' '}
-                  {profile.following ? 'Unfollow' : 'Follow'} {profile.username}
-                </button>
+                <EditProfileSettings isCurrentUser={isCurrentUser} />
+                <FollowUserButton isCurrentUser={isCurrentUser} />
               </div>
             </div>
           </div>

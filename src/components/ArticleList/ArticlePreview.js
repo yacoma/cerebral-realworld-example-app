@@ -11,18 +11,20 @@ export default connect(
     toggleFavoriteClicked: signal`blog.toggleFavoriteClicked`,
   },
   function ArticlePreview({ article, author, toggleFavoriteClicked, slug }) {
-    author.uri = `/#/@${author.username}`
+    const authorUri = `/#/@${author.username}`
     return (
       <div className="article-preview">
         <div className="article-meta">
-          <a href={author.uri}>
+          <a href={authorUri}>
             <img alt="" src={author.image} />
           </a>
           <div className="info">
-            <a href={author.uri} className="author">
+            <a href={authorUri} className="author">
               {author.username}
             </a>
-            <span className="date">{article.createdAt}</span>
+            <span className="date">
+              {new Date(article.createdAt).toDateString()}
+            </span>
           </div>
           <button
             className="btn btn-outline-primary btn-sm pull-xs-right"
