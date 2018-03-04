@@ -8,7 +8,7 @@ import Settings from '../Settings'
 import Profile from '../Profile'
 import Article from '../Article'
 import Editor from '../Editor'
-import Navbar from './Navbar'
+import Header from './Header'
 import Footer from './Footer'
 
 const pages = {
@@ -29,7 +29,7 @@ export default connect(
     const Page = pages[currentPage || 'home']
 
     return [
-      <Navbar key="navbar" />,
+      <Header key="header" />,
       <Page key="page" />,
       <Footer key="footer" />,
     ]

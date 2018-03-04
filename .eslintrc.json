@@ -22,7 +22,8 @@
         "singleQuote": true,
         "semi": false
       }
-    ]
+    ],
+    "react/prop-types": "off"
   },
   "extends": [
     "standard",

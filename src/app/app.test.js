@@ -12,11 +12,38 @@ beforeEach(() => {
   cerebral = CerebralTest(app)
 })
 
-test('should authenticate when valid token in localStorage', () => {
+test('setup', () => {})
+
+test('should authenticate when valid token in localStorage', async () => {
+  expect.assertions(5)
+
+  mock.get(apiUrl + '/user', (req, res) => {
+    return res
+      .status(200)
+      .header('Content-Type', 'application/json')
+      .body(
+        JSON.stringify({
+          user: {
+            email: 'test@example.com',
+            username: 'Tester',
+            token: validJWT,
+            bio: 'My Bio.',
+            image: 'image.png',
+          },
+        })
+      )
+  })
+
   localStorage.setItem('jwtHeader', JSON.stringify(validJWT))
-  return cerebral
+  await cerebral
     .runSignal('appMounted')
-    .then(({ state }) => [expect(state.auth.authenticated).toBe(true)])
+    .then(({ state }) => [
+      expect(state.auth.authenticated).toBe(true),
+      expect(state.auth.currentUser.email).toBe('test@example.com'),
+      expect(state.auth.currentUser.username).toBe('Tester'),
+      expect(state.auth.currentUser.bio).toBe('My Bio.'),
+      expect(state.auth.currentUser.image).toBe('image.png'),
+    ])
 })
 
 test('unauthenticated route to settings should redirect to login', async () => {

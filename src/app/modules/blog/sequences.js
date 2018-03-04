@@ -1,5 +1,5 @@
 import { sequence } from 'cerebral'
-import { state, string, props } from 'cerebral/tags'
+import { state, string, props, resolveObject } from 'cerebral/tags'
 import { set, unset, when, equals } from 'cerebral/operators'
 import {
   httpGet,
@@ -47,27 +47,35 @@ export const loadFeedTab = sequence('Load feed tab', [
   },
 ])
 
+const fetchComments = sequence('Fetch Comments', [
+  actions.clearComments,
+  httpGet(string`/articles/${state`blog.currentArticleSlug`}/comments`),
+  actions.setComments,
+])
+
 export const fetchCurrentArticle = sequence('Fetch current article', [
-  actions.clearArticles,
   httpGet(string`/articles/${state`blog.currentArticleSlug`}`),
   actions.setArticles,
   set(
     state`profile.currentProfile.username`,
     props`response.result.article.author.username`
   ),
+  fetchComments,
   fetchProfile,
 ])
 
 export const editArticle = sequence('Edit article', [
   set(state`blog.editorFormIsLoading`, true),
-  actions.clearArticles,
   when(state`blog.currentArticleSlug`),
   {
     true: httpPut(
       string`/articles/${state`blog.currentArticleSlug`}`,
       state`blog.editorForm`
     ),
-    false: httpPost('/articles', state`blog.editorForm`),
+    false: [
+      httpPost('/articles', state`blog.editorForm`),
+      set(state`blog.currentArticleSlug`, props`response.result.article.slug`),
+    ],
   },
   set(state`blog.editorForm.article.title`, ''),
   set(state`blog.editorForm.article.description`, ''),
@@ -75,6 +83,18 @@ export const editArticle = sequence('Edit article', [
   set(state`blog.editorForm.article.tagList`, ''),
   actions.setArticles,
   set(state`blog.editorFormIsLoading`, false),
+  redirectToSignal(
+    'articleRouted',
+    resolveObject({
+      slug: state`blog.currentArticleSlug`,
+    })
+  ),
+])
+
+export const deleteArticle = sequence('Delete Article', [
+  httpDelete(string`/articles/${state`blog.currentArticleSlug`}`),
+  unset(state`blog.articles.${state`blog.currentArticleSlug`}`),
+  redirectToSignal('homeRouted'),
 ])
 
 export const toggleFavoriteArticle = sequence('Toggle favorite article', [
@@ -97,15 +117,15 @@ export const toggleFavoriteArticle = sequence('Toggle favorite article', [
   },
 ])
 
-export const postComment = sequence('Post comment', [
-  set(state`blog.commentFormIsLoading`, true),
+export const postComment = sequence('Post Comment', [
+  set(state`blog.postCommentFormIsLoading`, true),
   httpPost(
     string`/articles/${state`blog.currentArticleSlug`}/comments`,
-    state`blog.commentForm`
+    state`blog.postCommentForm`
   ),
-  set(state`blog.commentForm.comment.body`, ''),
+  set(state`blog.postCommentForm.comment.body`, ''),
   actions.addComment,
-  set(state`blog.commentFormIsLoading`, false),
+  set(state`blog.postCommentFormIsLoading`, false),
 ])
 
 export const deleteComment = sequence('Delete Comment', [
@@ -117,7 +137,7 @@ export const deleteComment = sequence('Delete Comment', [
   ),
 ])
 
-export const fetchTags = sequence('Fetch tags', [
+export const fetchTags = sequence('Fetch Tags', [
   actions.clearTags,
   httpGet('/tags'),
   actions.addTags,

@@ -10,15 +10,15 @@ export const toggleFollowUser = sequence('Toggle follow user', [
   when(state`auth.authenticated`),
   {
     true: [
-      when(state`profile.following`),
+      when(state`profile.currentProfile.following`),
       {
         true: [
           httpDelete(string`/profiles/${props`username`}/follow`),
-          set(state`profile.following`, false),
+          set(state`profile.currentProfile.following`, false),
         ],
         false: [
           httpPost(string`/profiles/${props`username`}/follow`),
-          set(state`profile.following`, true),
+          set(state`profile.currentProfile.following`, true),
         ],
       },
     ],
