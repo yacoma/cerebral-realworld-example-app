@@ -12,7 +12,7 @@ export default connect(
     return (
       <fieldset className="form-group">
         <textarea
-          className="form-control form-control-lg"
+          className="form-control"
           rows="8"
           placeholder="Write your article (in markdown)"
           value={field || articleBody}

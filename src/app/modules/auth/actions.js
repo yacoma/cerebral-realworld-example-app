@@ -24,3 +24,20 @@ export function removeUser({ state, storage, http }) {
   state.set('auth.currentUser.email', '')
   state.set('auth.currentUser.username', '')
 }
+
+export function getValidationErrorMessages({ props }) {
+  const errorMessages = Object.keys(props.error.response.result.errors).reduce(
+    (errorMessages, errorField) => {
+      if (Array.isArray(props.error.response.result.errors[errorField])) {
+        errorMessages.push(
+          errorField +
+            ': ' +
+            props.error.response.result.errors[errorField].join(', ')
+        )
+      }
+      return errorMessages
+    },
+    []
+  )
+  return { errorMessages }
+}
