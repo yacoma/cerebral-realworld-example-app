@@ -28,7 +28,7 @@ export default connect(
                   <TitleField path="blog.editorForm.article.title" />
                   <DescriptionField path="blog.editorForm.article.description" />
                   <BodyField path="blog.editorForm.article.body" />
-                  <TagListField path="blog.editorForm.article.tagList" />
+                  <TagListField path="blog.editorForm.article.tagInput" />
                   <button
                     className="btn btn-lg pull-xs-right btn-primary"
                     type="button"

@@ -14,7 +14,7 @@ export default connect(
     }
 
     return Object.keys(comments).map(commentId => {
-      return <Comment comment={comments[commentId]} key={commentId} />
+      return <Comment commentId={commentId} key={commentId} />
     })
   }
 )

@@ -5,20 +5,49 @@ import { state, props, signal } from 'cerebral/tags'
 export default connect(
   {
     field: state`${props`path`}`,
-    articleTags: state`blog.articles.${state`blog.currentArticleSlug`}.tagList`,
+    tagList: state`blog.editorForm.article.tagList`,
     fieldChanged: signal`fieldChanged`,
+    tagAdded: signal`blog.tagAdded`,
+    tagRemoved: signal`blog.tagRemoved`,
   },
-  function TagListField({ path, field, articleTags, fieldChanged }) {
+  function TagListField({
+    path,
+    field,
+    tagList,
+    fieldChanged,
+    tagAdded,
+    tagRemoved,
+  }) {
+    const watchForEnter = e => {
+      if (e.keyCode === 13) {
+        e.preventDefault()
+        tagAdded()
+      }
+    }
     return (
       <fieldset className="form-group">
         <input
-          className="form-control form-control-lg"
+          className="form-control"
           type="text"
           placeholder="Enter tags"
-          value={field || articleTags}
+          value={field}
           onChange={e => fieldChanged({ path, value: e.target.value })}
+          onKeyUp={watchForEnter}
         />
-        <div className="tag-list" />
+        <br />
+        <div className="tag-list">
+          {(tagList || []).map((tag, tagIndex) => {
+            return (
+              <span className="tag-default tag-pill" key={tagIndex}>
+                <i
+                  className="ion-close-round"
+                  onClick={() => tagRemoved({ tagIndex })}
+                />
+                {tag}
+              </span>
+            )
+          })}
+        </div>
       </fieldset>
     )
   }

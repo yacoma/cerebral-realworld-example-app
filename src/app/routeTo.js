@@ -46,6 +46,10 @@ const routeTo = sequence('Route to', [
       when(props`slug`),
       {
         true: [
+          set(
+            state`blog.editorForm.article.tagList`,
+            state`blog.articles.${state`blog.currentArticleSlug`}.tagList`
+          ),
           set(state`lastVisited`, 'editor'),
           set(state`blog.currentArticleSlug`, props`slug`),
         ],

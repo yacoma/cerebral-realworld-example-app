@@ -14,6 +14,7 @@ export default Module({
         title: '',
         description: '',
         body: '',
+        tagInput: '',
         tagList: [],
       },
     },
@@ -33,5 +34,7 @@ export default Module({
     tagClicked: sequences.showArticlesByTag,
     commentDelButtonClicked: sequences.deleteComment,
     feedTabClicked: sequences.loadFeedTab,
+    tagAdded: sequences.addTag,
+    tagRemoved: sequences.removeTag,
   },
 })

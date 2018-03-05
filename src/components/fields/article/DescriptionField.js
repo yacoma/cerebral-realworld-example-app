@@ -12,7 +12,7 @@ export default connect(
     return (
       <fieldset className="form-group">
         <input
-          className="form-control form-control-lg"
+          className="form-control"
           type="text"
           placeholder="What's this article about?"
           value={field || articleDescription}

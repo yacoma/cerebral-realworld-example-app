@@ -1,9 +1,10 @@
 import { sequence } from 'cerebral'
-import { state, resolveObject } from 'cerebral/tags'
+import { state, props, resolveObject } from 'cerebral/tags'
 import { set, when } from 'cerebral/operators'
 import { httpPost, httpPut } from '@cerebral/http/operators'
 import { redirectToSignal } from '@cerebral/router/operators'
 
+import { removeEmptyFields } from '../../factories'
 import { fetchArticlesFeed, fetchAllArticles } from '../blog/sequences'
 import * as actions from './actions'
 import * as factories from './factories'
@@ -78,7 +79,8 @@ export const logoutUser = sequence('Log user out', [
 
 export const changeSettings = sequence('Change settings', [
   set(state`auth.settingsFormIsLoading`, true),
-  httpPut('/user', state`auth.settingsForm`),
+  removeEmptyFields('auth.settingsForm'),
+  httpPut('/user', props`cleanedForm`),
   {
     success: [
       set(state`auth.settingsForm.user.image`, ''),

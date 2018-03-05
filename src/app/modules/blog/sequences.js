@@ -1,6 +1,6 @@
 import { sequence } from 'cerebral'
 import { state, string, props, resolveObject } from 'cerebral/tags'
-import { set, unset, when, equals } from 'cerebral/operators'
+import { set, unset, push, splice, when, equals } from 'cerebral/operators'
 import {
   httpGet,
   httpPost,
@@ -9,7 +9,7 @@ import {
 } from '@cerebral/http/operators'
 import { redirectToSignal } from '@cerebral/router/operators'
 
-import { fetchProfile } from '../profile/sequences'
+import { removeEmptyFields } from '../../factories'
 import * as actions from './actions'
 
 export const fetchAllArticles = sequence('Fetch all articles', [
@@ -56,22 +56,21 @@ const fetchComments = sequence('Fetch Comments', [
 export const fetchCurrentArticle = sequence('Fetch current article', [
   httpGet(string`/articles/${state`blog.currentArticleSlug`}`),
   actions.setArticles,
-  set(
-    state`profile.currentProfile.username`,
-    props`response.result.article.author.username`
-  ),
+  set(state`profile.currentProfile`, props`response.result.article.author`),
   fetchComments,
-  fetchProfile,
 ])
 
 export const editArticle = sequence('Edit article', [
   set(state`blog.editorFormIsLoading`, true),
   when(state`blog.currentArticleSlug`),
   {
-    true: httpPut(
-      string`/articles/${state`blog.currentArticleSlug`}`,
-      state`blog.editorForm`
-    ),
+    true: [
+      removeEmptyFields('blog.editorForm'),
+      httpPut(
+        string`/articles/${state`blog.currentArticleSlug`}`,
+        props`cleanedForm`
+      ),
+    ],
     false: [
       httpPost('/articles', state`blog.editorForm`),
       set(state`blog.currentArticleSlug`, props`response.result.article.slug`),
@@ -80,7 +79,8 @@ export const editArticle = sequence('Edit article', [
   set(state`blog.editorForm.article.title`, ''),
   set(state`blog.editorForm.article.description`, ''),
   set(state`blog.editorForm.article.body`, ''),
-  set(state`blog.editorForm.article.tagList`, ''),
+  set(state`blog.editorForm.article.tagInput`, ''),
+  set(state`blog.editorForm.article.tagList`, []),
   actions.setArticles,
   set(state`blog.editorFormIsLoading`, false),
   redirectToSignal(
@@ -141,4 +141,16 @@ export const fetchTags = sequence('Fetch Tags', [
   actions.clearTags,
   httpGet('/tags'),
   actions.addTags,
+])
+
+export const addTag = sequence('Add Tag to list', [
+  push(
+    state`blog.editorForm.article.tagList`,
+    state`blog.editorForm.article.tagInput`
+  ),
+  set(state`blog.editorForm.article.tagInput`, ''),
+])
+
+export const removeTag = sequence('Remove Tag from list', [
+  splice(state`blog.editorForm.article.tagList`, props`tagIndex`, 1),
 ])
