@@ -1,6 +1,14 @@
 import { sequence } from 'cerebral'
 import { state, string, props, resolveObject } from 'cerebral/tags'
-import { set, unset, push, splice, when, equals } from 'cerebral/operators'
+import {
+  set,
+  unset,
+  increment,
+  push,
+  splice,
+  when,
+  equals,
+} from 'cerebral/operators'
 import {
   httpGet,
   httpPost,
@@ -142,10 +150,12 @@ export const toggleFavoriteArticle = sequence('Toggle favorite article', [
         true: [
           httpDelete(string`/articles/${props`slug`}/favorite`),
           set(state`blog.articles.${props`slug`}.favorited`, false),
+          increment(state`blog.articles.${props`slug`}.favoritesCount`, -1),
         ],
         false: [
           httpPost(string`/articles/${props`slug`}/favorite`),
           set(state`blog.articles.${props`slug`}.favorited`, true),
+          increment(state`blog.articles.${props`slug`}.favoritesCount`),
         ],
       },
     ],

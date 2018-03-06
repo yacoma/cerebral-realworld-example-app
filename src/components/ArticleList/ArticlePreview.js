@@ -7,20 +7,19 @@ import ArticleTags from '../ArticleTags'
 export default connect(
   {
     article: state`blog.articles.${props`slug`}`,
-    author: state`blog.articles.${props`slug`}.author`,
     toggleFavoriteClicked: signal`blog.toggleFavoriteClicked`,
   },
-  function ArticlePreview({ article, author, toggleFavoriteClicked, slug }) {
-    const authorUri = `/#/@${author.username}`
+  function ArticlePreview({ slug, article, toggleFavoriteClicked }) {
+    const authorUri = `/#/@${article.author.username}`
     return (
       <div className="article-preview">
         <div className="article-meta">
           <a href={authorUri}>
-            <img alt="" src={author.image} />
+            <img alt="" src={article.author.image} />
           </a>
           <div className="info">
             <a href={authorUri} className="author">
-              {author.username}
+              {article.author.username}
             </a>
             <span className="date">
               {new Date(article.createdAt).toDateString()}
