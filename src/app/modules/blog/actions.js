@@ -6,6 +6,7 @@ export function setArticles({ props, state }) {
   let articles = []
   if (props.response.result.articles) {
     articles = props.response.result.articles
+    state.set('blog.articlesCount', props.response.result.articlesCount)
   } else if (props.response.result.article) {
     articles = [props.response.result.article]
   }

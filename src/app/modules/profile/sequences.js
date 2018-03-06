@@ -4,6 +4,7 @@ import { set, when } from 'cerebral/operators'
 import { httpGet, httpDelete, httpPost } from '@cerebral/http/operators'
 import { redirectToSignal } from '@cerebral/router/operators'
 
+import { articlesOffset } from '../../computed'
 import { setArticles, clearArticles } from '../blog/actions'
 
 export const toggleFollowUser = sequence('Toggle follow user', [
@@ -32,17 +33,25 @@ export const fetchProfile = sequence('Fetch profile', [
 ])
 
 export const fetchCreatedArticles = sequence('Fetch created articles', [
+  set(state`blog.articlesAreLoading`, true),
   clearArticles,
-  httpGet(string`/articles?author=${state`profile.currentProfile.username`}`),
+  set(state`blog.currentFeed`, 'created'),
+  httpGet(
+    string`/articles?author=${state`profile.currentProfile.username`}&limit=10&offset=${articlesOffset}`
+  ),
   setArticles,
   set(state`profile.currentTab`, 'myArticles'),
+  set(state`blog.articlesAreLoading`, false),
 ])
 
 export const fetchFavoritedArticles = sequence('Fetch favorited articles', [
+  set(state`blog.articlesAreLoading`, true),
   clearArticles,
+  set(state`blog.currentFeed`, 'favorited'),
   httpGet(
-    string`/articles?favorited=${state`profile.currentProfile.username`}`
+    string`/articles?favorited=${state`profile.currentProfile.username`}&limit=10&offset=${articlesOffset}`
   ),
   setArticles,
   set(state`profile.currentTab`, 'favoritedArticles'),
+  set(state`blog.articlesAreLoading`, false),
 ])

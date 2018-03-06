@@ -3,13 +3,15 @@ import { connect } from '@cerebral/react'
 import { state } from 'cerebral/tags'
 
 import ArticlePreview from './ArticlePreview'
+import ListPagination from './ListPagination'
 
 export default connect(
   {
     articles: state`blog.articles`,
+    articlesAreLoading: state`blog.articlesAreLoading`,
   },
-  function ArticleList({ articles }) {
-    if (!articles) {
+  function ArticleList({ articles, articlesAreLoading }) {
+    if (articlesAreLoading) {
       return <div className="article-preview">Loading articles...</div>
     }
 
@@ -22,6 +24,7 @@ export default connect(
         {Object.keys(articles).map(slug => {
           return <ArticlePreview key={slug} slug={slug} />
         })}
+        <ListPagination />
       </div>
     )
   }
