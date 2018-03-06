@@ -56,7 +56,7 @@ test('setup', () => {})
 test('should be logged out', async () => {
   expect.assertions(3)
 
-  mock.get(apiUrl + '/articles', (req, res) => {
+  mock.get(/^.*\/articles(\?.*)?$/, (req, res) => {
     return res
       .status(200)
       .header('Content-Type', 'application/json')
@@ -97,7 +97,7 @@ test('should login', async () => {
       )
   })
 
-  mock.get(apiUrl + '/articles/feed', (req, res) => {
+  mock.get(/^.*\/articles\/feed(\?.*)?$/, (req, res) => {
     return res
       .status(200)
       .header('Content-Type', 'application/json')
@@ -169,7 +169,7 @@ test('should login on registration', async () => {
       )
   })
 
-  mock.get(apiUrl + '/articles/feed', (req, res) => {
+  mock.get(/^.*\/articles\/feed(\?.*)?$/, (req, res) => {
     return res
       .status(200)
       .header('Content-Type', 'application/json')

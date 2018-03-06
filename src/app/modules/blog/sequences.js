@@ -9,28 +9,41 @@ import {
 } from '@cerebral/http/operators'
 import { redirectToSignal } from '@cerebral/router/operators'
 
+import { articlesOffset } from '../../computed'
 import { removeEmptyFields } from '../../factories'
+import {
+  fetchCreatedArticles,
+  fetchFavoritedArticles,
+} from '../profile/sequences'
 import * as actions from './actions'
 
 export const fetchAllArticles = sequence('Fetch all articles', [
+  set(state`blog.articlesAreLoading`, true),
   actions.clearArticles,
   set(state`blog.currentFeed`, 'all'),
-  httpGet('/articles'),
+  httpGet(string`/articles?limit=10&offset=${articlesOffset}`),
   actions.setArticles,
+  set(state`blog.articlesAreLoading`, false),
 ])
 
 export const fetchArticlesFeed = sequence('Fetch created articles', [
+  set(state`blog.articlesAreLoading`, true),
   actions.clearArticles,
   set(state`blog.currentFeed`, 'feed'),
-  httpGet(string`/articles/feed`),
+  httpGet(string`/articles/feed?limit=10&offset=${articlesOffset}`),
   actions.setArticles,
+  set(state`blog.articlesAreLoading`, false),
 ])
 
 const fetchArticlesByTag = sequence('Fetch articles by tag', [
+  set(state`blog.articlesAreLoading`, true),
   actions.clearArticles,
   set(state`blog.currentFeed`, 'tag'),
-  httpGet(string`/articles?tag=${state`blog.currentTag`}`),
+  httpGet(
+    string`/articles?tag=${state`blog.currentTag`}&limit=10&offset=${articlesOffset}`
+  ),
   actions.setArticles,
+  set(state`blog.articlesAreLoading`, false),
 ])
 
 export const showArticlesByTag = sequence('Show articles by tag', [
@@ -38,12 +51,35 @@ export const showArticlesByTag = sequence('Show articles by tag', [
   fetchArticlesByTag,
 ])
 
-export const loadFeedTab = sequence('Load feed tab', [
-  set(state`blog.currentFeed`, props`feed`),
-  equals(props`feed`),
+export const setArticlePage = sequence('Set articles page', [
+  when(
+    state`blog.currentArticlesPage`,
+    props`articlesPage`,
+    (currentArticlesPage, articlesPage) => currentArticlesPage !== articlesPage
+  ),
   {
-    feed: fetchArticlesFeed,
+    true: [
+      set(state`blog.currentArticlesPage`, props`articlesPage`),
+      equals(state`blog.currentFeed`),
+      {
+        all: fetchAllArticles,
+        feed: fetchArticlesFeed,
+        tag: fetchArticlesByTag,
+        created: fetchCreatedArticles,
+        favorited: fetchFavoritedArticles,
+      },
+    ],
+    false: [],
+  },
+])
+
+export const loadFeedTab = sequence('Load feed tab', [
+  set(state`blog.currentArticlesPage`, 1),
+  set(state`blog.currentFeed`, props`feed`),
+  equals(state`blog.currentFeed`),
+  {
     all: fetchAllArticles,
+    feed: fetchArticlesFeed,
   },
 ])
 

@@ -8,6 +8,9 @@ export default Module({
     currentFeed: 'all',
     currentTag: '',
     articles: {},
+    articlesCount: 0,
+    currentArticlesPage: 1,
+    articlesAreLoading: false,
     tags: [],
     editorForm: {
       article: {
@@ -36,5 +39,6 @@ export default Module({
     feedTabClicked: sequences.loadFeedTab,
     tagAdded: sequences.addTag,
     tagRemoved: sequences.removeTag,
+    articlePageRequested: sequences.setArticlePage,
   },
 })
