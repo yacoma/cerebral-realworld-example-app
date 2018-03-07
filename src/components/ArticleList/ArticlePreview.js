@@ -7,13 +7,22 @@ import ArticleTags from '../ArticleTags'
 export default connect(
   {
     article: state`blog.articles.${props`slug`}`,
+    toggleFavoriteIsLoading: state`blog.toggleFavoriteIsLoading`,
     toggleFavoriteClicked: signal`blog.toggleFavoriteClicked`,
   },
-  function ArticlePreview({ slug, article, toggleFavoriteClicked }) {
+  function ArticlePreview({
+    slug,
+    article,
+    toggleFavoriteIsLoading,
+    toggleFavoriteClicked,
+  }) {
     const authorUri = `/#/@${article.author.username}`
-    const favoriteButtonClass = article.favorited
+    let favoriteButtonClass = article.favorited
       ? 'btn btn-sm btn-primary pull-xs-right'
       : 'btn btn-sm btn-outline-primary pull-xs-right'
+    if (toggleFavoriteIsLoading) {
+      favoriteButtonClass += ' disabled'
+    }
     return (
       <div className="article-preview">
         <div className="article-meta">

@@ -11,6 +11,7 @@ export const toggleFollowUser = sequence('Toggle follow user', [
   when(state`auth.authenticated`),
   {
     true: [
+      set(state`profile.toggleFollowIsLoading`, true),
       when(state`profile.currentProfile.following`),
       {
         true: [
@@ -22,6 +23,7 @@ export const toggleFollowUser = sequence('Toggle follow user', [
           set(state`profile.currentProfile.following`, true),
         ],
       },
+      set(state`profile.toggleFollowIsLoading`, false),
     ],
     false: redirectToSignal('pageRouted', { page: 'login' }),
   },

@@ -5,16 +5,25 @@ import { state, signal } from 'cerebral/tags'
 export default connect(
   {
     profile: state`profile.currentProfile`,
+    toggleFollowIsLoading: state`profile.toggleFollowIsLoading`,
     toggleFollowClicked: signal`profile.toggleFollowClicked`,
   },
-  function Profile({ isCurrentUser, profile, toggleFollowClicked }) {
+  function Profile({
+    isCurrentUser,
+    profile,
+    toggleFollowIsLoading,
+    toggleFollowClicked,
+  }) {
     if (isCurrentUser) {
       return null
     }
 
-    const followButtonClass = profile.following
+    let followButtonClass = profile.following
       ? 'btn btn-sm btn-secondary action-btn'
       : 'btn btn-sm btn-outline-secondary action-btn'
+    if (toggleFollowIsLoading) {
+      followButtonClass += ' disabled'
+    }
     return (
       <button
         className={followButtonClass}

@@ -11,6 +11,7 @@ export default Module({
     articlesCount: 0,
     currentArticlesPage: 1,
     articlesAreLoading: false,
+    toggleFavoriteIsLoading: false,
     tags: [],
     editorForm: {
       article: {
