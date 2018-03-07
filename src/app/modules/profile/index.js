@@ -11,6 +11,7 @@ export default Module({
       following: false,
     },
     currentTab: 'myArticles',
+    toggleFollowIsLoading: false,
   },
   signals: {
     toggleFollowClicked: sequences.toggleFollowUser,

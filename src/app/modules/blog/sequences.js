@@ -145,6 +145,7 @@ export const toggleFavoriteArticle = sequence('Toggle favorite article', [
   when(state`auth.authenticated`),
   {
     true: [
+      set(state`blog.toggleFavoriteIsLoading`, true),
       when(state`blog.articles.${props`slug`}.favorited`),
       {
         true: [
@@ -158,6 +159,7 @@ export const toggleFavoriteArticle = sequence('Toggle favorite article', [
           increment(state`blog.articles.${props`slug`}.favoritesCount`),
         ],
       },
+      set(state`blog.toggleFavoriteIsLoading`, false),
     ],
     false: redirectToSignal('pageRouted', { page: 'login' }),
   },

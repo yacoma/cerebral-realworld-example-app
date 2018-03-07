@@ -8,6 +8,8 @@ export default connect(
     article: state`blog.articles.${state`blog.currentArticleSlug`}`,
     author: state`profile.currentProfile`,
     currentUser: state`auth.currentUser`,
+    toggleFollowIsLoading: state`profile.toggleFollowIsLoading`,
+    toggleFavoriteIsLoading: state`blog.toggleFavoriteIsLoading`,
     toggleFollowClicked: signal`profile.toggleFollowClicked`,
     toggleFavoriteClicked: signal`blog.toggleFavoriteClicked`,
     articleDelButtonClicked: signal`blog.articleDelButtonClicked`,
@@ -17,6 +19,8 @@ export default connect(
     article,
     author,
     currentUser,
+    toggleFollowIsLoading,
+    toggleFavoriteIsLoading,
     toggleFollowClicked,
     toggleFavoriteClicked,
     articleDelButtonClicked,
@@ -41,12 +45,18 @@ export default connect(
       )
     }
 
-    const followButtonClass = author.following
+    let followButtonClass = author.following
       ? 'btn btn-sm btn-secondary'
       : 'btn btn-sm btn-outline-secondary'
-    const favoriteButtonClass = article.favorited
+    if (toggleFollowIsLoading) {
+      followButtonClass += ' disabled'
+    }
+    let favoriteButtonClass = article.favorited
       ? 'btn btn-sm btn-primary'
       : 'btn btn-sm btn-outline-primary'
+    if (toggleFavoriteIsLoading) {
+      favoriteButtonClass += ' disabled'
+    }
     return (
       <span>
         <button
