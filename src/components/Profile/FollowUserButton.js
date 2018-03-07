@@ -12,9 +12,12 @@ export default connect(
       return null
     }
 
+    const followButtonClass = profile.following
+      ? 'btn btn-sm btn-secondary action-btn'
+      : 'btn btn-sm btn-outline-secondary action-btn'
     return (
       <button
-        className="btn btn-sm btn-outline-secondary action-btn"
+        className={followButtonClass}
         onClick={() => toggleFollowClicked({ username: profile.username })}
       >
         <i className="ion-plus-round" />&nbsp;{' '}
