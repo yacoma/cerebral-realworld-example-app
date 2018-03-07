@@ -1,9 +1,9 @@
 {
-  "name": "cerebral-react-realworld-example-app",
+  "name": "cerebral-realworld-example-app",
   "version": "0.1.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yacoma/cerebral-react-realworld-example-app.git"
+    "url": "git+https://github.com/yacoma/cerebral-realworld-example-app.git"
   },
   "keywords": [
     "cerebral"
@@ -11,9 +11,9 @@
   "author": "Henri Hulski <henri.hulski@gazeta.pl",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yacoma/cerebral-react-realworld-example-app/issues"
+    "url": "https://github.com/yacoma/cerebral-realworld-example-app/issues"
   },
-  "homepage": "https://github.com/yacoma/cerebral-react-realworld-example-app#readme",
+  "homepage": "https://github.com/yacoma/cerebral-realworld-example-app#readme",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
