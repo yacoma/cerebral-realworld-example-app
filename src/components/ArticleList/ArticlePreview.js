@@ -11,6 +11,9 @@ export default connect(
   },
   function ArticlePreview({ slug, article, toggleFavoriteClicked }) {
     const authorUri = `/#/@${article.author.username}`
+    const favoriteButtonClass = article.favorited
+      ? 'btn btn-sm btn-primary pull-xs-right'
+      : 'btn btn-sm btn-outline-primary pull-xs-right'
     return (
       <div className="article-preview">
         <div className="article-meta">
@@ -26,7 +29,7 @@ export default connect(
             </span>
           </div>
           <button
-            className="btn btn-outline-primary btn-sm pull-xs-right"
+            className={favoriteButtonClass}
             onClick={() => toggleFavoriteClicked({ slug: slug })}
           >
             <i className="ion-heart" /> {article.favoritesCount}

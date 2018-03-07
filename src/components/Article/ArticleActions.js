@@ -40,10 +40,17 @@ export default connect(
         </span>
       )
     }
+
+    const followButtonClass = author.following
+      ? 'btn btn-sm btn-secondary'
+      : 'btn btn-sm btn-outline-secondary'
+    const favoriteButtonClass = article.favorited
+      ? 'btn btn-sm btn-primary'
+      : 'btn btn-sm btn-outline-primary'
     return (
       <span>
         <button
-          className="btn btn-sm btn-outline-secondary"
+          className={followButtonClass}
           onClick={() => toggleFollowClicked({ username: author.username })}
         >
           <i className="ion-plus-round" />&nbsp;{' '}
@@ -51,7 +58,7 @@ export default connect(
         </button>
         &nbsp;&nbsp;
         <button
-          className="btn btn-sm btn-outline-primary"
+          className={favoriteButtonClass}
           onClick={() => toggleFavoriteClicked({ slug: slug })}
         >
           <i className="ion-heart" />&nbsp;{' '}
