@@ -17,10 +17,10 @@ export default connect(
       return null
     }
 
-    const range = []
-    for (let i = 1; i < Math.ceil(articlesCount / 10); i++) {
-      range.push(i)
-    }
+    const range = Array.from(
+      { length: Math.ceil(articlesCount / 10) },
+      (val, index) => index + 1
+    )
 
     return (
       <nav>
