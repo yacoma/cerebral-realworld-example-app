@@ -17,7 +17,7 @@ export default connect(
       return null
     }
 
-    const range = Array.from(
+    const pageRange = Array.from(
       { length: Math.ceil(articlesCount / 10) },
       (val, index) => index + 1
     )
@@ -25,7 +25,7 @@ export default connect(
     return (
       <nav>
         <ul className="pagination">
-          {range.map(articlesPage => {
+          {pageRange.map(articlesPage => {
             const isCurrent = articlesPage === currentArticlesPage
             const clickHandler = e => {
               e.preventDefault()
