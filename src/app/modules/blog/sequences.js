@@ -61,13 +61,13 @@ export const showArticlesByTag = sequence('Show articles by tag', [
 
 export const setArticlePage = sequence('Set articles page', [
   when(
-    state`blog.currentArticlesPage`,
-    props`articlesPage`,
-    (currentArticlesPage, articlesPage) => currentArticlesPage !== articlesPage
+    state`blog.currentArticlePage`,
+    props`articlePage`,
+    (currentArticlePage, articlePage) => currentArticlePage !== articlePage
   ),
   {
     true: [
-      set(state`blog.currentArticlesPage`, props`articlesPage`),
+      set(state`blog.currentArticlePage`, props`articlePage`),
       equals(state`blog.currentFeed`),
       {
         all: fetchAllArticles,
@@ -82,7 +82,7 @@ export const setArticlePage = sequence('Set articles page', [
 ])
 
 export const loadFeedTab = sequence('Load feed tab', [
-  set(state`blog.currentArticlesPage`, 1),
+  set(state`blog.currentArticlePage`, 1),
   set(state`blog.currentFeed`, props`feed`),
   equals(state`blog.currentFeed`),
   {

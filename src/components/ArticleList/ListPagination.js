@@ -5,12 +5,12 @@ import { state, signal } from 'cerebral/tags'
 export default connect(
   {
     articlesCount: state`blog.articlesCount`,
-    currentArticlesPage: state`blog.currentArticlesPage`,
+    currentArticlePage: state`blog.currentArticlePage`,
     articlePageRequested: signal`blog.articlePageRequested`,
   },
   function ListPagination({
     articlesCount,
-    currentArticlesPage,
+    currentArticlePage,
     articlePageRequested,
   }) {
     if (articlesCount <= 10) {
@@ -25,20 +25,20 @@ export default connect(
     return (
       <nav>
         <ul className="pagination">
-          {pageRange.map(articlesPage => {
-            const isCurrent = articlesPage === currentArticlesPage
+          {pageRange.map(articlePage => {
+            const isCurrent = articlePage === currentArticlePage
             const clickHandler = e => {
               e.preventDefault()
-              articlePageRequested({ articlesPage })
+              articlePageRequested({ articlePage })
             }
             return (
               <li
                 className={isCurrent ? 'page-item active' : 'page-item'}
                 onClick={clickHandler}
-                key={articlesPage.toString()}
+                key={articlePage.toString()}
               >
                 <a className="page-link" href="">
-                  {articlesPage}
+                  {articlePage}
                 </a>
               </li>
             )

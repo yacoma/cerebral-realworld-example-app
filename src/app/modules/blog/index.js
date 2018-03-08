@@ -9,7 +9,7 @@ export default Module({
     currentTag: '',
     articles: {},
     articlesCount: 0,
-    currentArticlesPage: 1,
+    currentArticlePage: 1,
     articlesAreLoading: false,
     toggleFavoriteIsLoading: false,
     tags: [],

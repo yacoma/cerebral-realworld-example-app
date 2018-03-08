@@ -22,7 +22,7 @@ const routeTo = sequence('Route to', [
   {
     home: [
       set(state`lastVisited`, 'home'),
-      set(state`blog.currentArticlesPage`, 1),
+      set(state`blog.currentArticlePage`, 1),
       when(state`auth.authenticated`),
       {
         true: fetchArticlesFeed,
@@ -66,7 +66,7 @@ const routeTo = sequence('Route to', [
         true: [
           set(state`profile.currentProfile.username`, props`username`),
           fetchProfile,
-          set(state`blog.currentArticlesPage`, 1),
+          set(state`blog.currentArticlePage`, 1),
           when(props`favorites`),
           {
             true: fetchFavoritedArticles,
