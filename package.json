@@ -13,7 +13,7 @@
   "bugs": {
     "url": "https://github.com/yacoma/cerebral-realworld-example-app/issues"
   },
-  "homepage": "https://github.com/yacoma/cerebral-realworld-example-app#readme",
+  "homepage": "https://conduit.yacoma.it",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -43,7 +43,7 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-prettier": "^2.6.0",
-    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-react": "^7.7.0",
     "eslint-plugin-standard": "^3.0.1",
     "jest-localstorage-mock": "^2.2.0",
