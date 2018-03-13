@@ -17,8 +17,7 @@ import {
 import { authenticate } from './actions'
 
 const routeTo = sequence('Route to', [
-  set(state`currentPage`, props`page`),
-  equals(state`currentPage`),
+  equals(props`page`),
   {
     home: [
       set(state`lastVisited`, 'home'),
@@ -78,6 +77,7 @@ const routeTo = sequence('Route to', [
     ],
     otherwise: redirectToSignal('homeRouted'),
   },
+  set(state`currentPage`, props`page`),
 ])
 
 export default routeTo
