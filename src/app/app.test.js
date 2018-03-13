@@ -12,6 +12,8 @@ beforeEach(() => {
   cerebral = CerebralTest(app)
 })
 
+test('setup', () => {})
+
 test('should authenticate when valid token in localStorage', async () => {
   expect.assertions(5)
 
