@@ -5,11 +5,28 @@ import { CommentField } from '../fields/comment'
 
 export default connect(
   {
+    authenticated: state`auth.authenticated`,
     isLoading: state`blog.postCommentFormIsLoading`,
     currentUserImage: state`auth.currentUser.image`,
     formSubmitted: signal`blog.commentFormSubmitted`,
   },
-  function PostComment({ isLoading, currentUserImage, formSubmitted }) {
+  function PostComment({
+    authenticated,
+    isLoading,
+    currentUserImage,
+    formSubmitted,
+  }) {
+    if (!authenticated) {
+      return (
+        <p>
+          <a href="/#/login">Sign in</a>
+          &nbsp;or&nbsp;
+          <a href="/#/register">sign up</a>
+          &nbsp;to add comments on this article.
+        </p>
+      )
+    }
+
     const handleSubmit = event => {
       event.preventDefault()
       formSubmitted()
