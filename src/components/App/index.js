@@ -24,14 +24,17 @@ const pages = {
 export default connect(
   {
     currentPage: state`currentPage`,
+    pageIsLoading: state`pageIsLoading`,
   },
-  function App({ currentPage }) {
+  function App({ currentPage, pageIsLoading }) {
     const Page = pages[currentPage || 'home']
 
-    return [
-      <Header key="header" />,
-      <Page key="page" />,
-      <Footer key="footer" />,
-    ]
+    return (
+      <div style={{ opacity: pageIsLoading ? 0.5 : 1 }}>
+        <Header />
+        <Page />
+        <Footer />
+      </div>
+    )
   }
 )

@@ -22,6 +22,7 @@ export default Module(({ controller }) => {
       currentPage: '',
       lastVisited: '',
       errorMessages: [],
+      pageIsLoading: false,
     },
     signals: {
       appMounted: sequences.initialize,
