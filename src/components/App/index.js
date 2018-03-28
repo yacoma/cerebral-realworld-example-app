@@ -30,7 +30,7 @@ export default connect(
     const Page = pages[currentPage || 'home']
 
     return (
-      <div style={{ opacity: pageIsLoading ? 0.5 : 1 }}>
+      <div style={{ opacity: pageIsLoading ? 0.7 : 1 }}>
         <Header />
         <Page />
         <Footer />
