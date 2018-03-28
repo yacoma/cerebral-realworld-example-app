@@ -15,12 +15,12 @@
   },
   "homepage": "https://conduit.yacoma.it",
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "format": "npm run lint -- --fix && prettier --write \"*.md\" \"*.json\"",
     "lint": "eslint \"src/**/*.js\"",
-    "format": "npm run lint -- --fix"
+    "start": "react-scripts start",
+    "test": "react-scripts test --env=jsdom"
   },
   "dependencies": {
     "@cerebral/http": "^4.2.0",
@@ -39,7 +39,7 @@
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-standard": "^11.0.0",
-    "eslint-config-standard-react": "^6.0.0",
+    "eslint-config-standard-jsx": "^5.0.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-prettier": "^2.6.0",

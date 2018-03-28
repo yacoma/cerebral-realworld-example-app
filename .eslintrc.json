@@ -11,26 +11,16 @@
     "node": true,
     "es6": true
   },
-  "plugins": [
-    "prettier"
-  ],
-  "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "trailingComma": "es5",
-        "singleQuote": true,
-        "semi": false
-      }
-    ],
-    "react/prop-types": "off"
-  },
   "extends": [
     "standard",
-    "standard-react",
-    "prettier",
-    "prettier/react"
+    "standard-jsx",
+    "plugin:prettier/recommended",
+    "prettier/react",
+    "prettier/standard"
   ],
+  "rules": {
+    "linebreak-style": ["error", "unix"]
+  },
   "globals": {
     "localStorage": true,
     "test": true,
