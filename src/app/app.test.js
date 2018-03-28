@@ -9,10 +9,20 @@ let cerebral
 beforeEach(() => {
   localStorage.removeItem('jwtHeader')
   mock.setup()
+  mock.get(/^.*\/articles(\?.*)?$/, (req, res) => {
+    return res
+      .status(200)
+      .header('Content-Type', 'application/json')
+      .body(jsonResponse.articles)
+  })
+  mock.get(/^.*\/tags\/?$/, (req, res) => {
+    return res
+      .status(200)
+      .header('Content-Type', 'application/json')
+      .body(jsonResponse.tags)
+  })
   cerebral = CerebralTest(app)
 })
-
-test('setup', () => {})
 
 test('should authenticate when valid token in localStorage', async () => {
   expect.assertions(5)
@@ -26,7 +36,7 @@ test('should authenticate when valid token in localStorage', async () => {
           user: {
             email: 'test@example.com',
             username: 'Tester',
-            token: validJWT,
+            token: authHeader.validJWT,
             bio: 'My Bio.',
             image: 'image.png',
           },
@@ -34,7 +44,7 @@ test('should authenticate when valid token in localStorage', async () => {
       )
   })
 
-  localStorage.setItem('jwtHeader', JSON.stringify(validJWT))
+  localStorage.setItem('jwtHeader', JSON.stringify(authHeader.validJWT))
   await cerebral
     .runSignal('appMounted')
     .then(({ state }) => [

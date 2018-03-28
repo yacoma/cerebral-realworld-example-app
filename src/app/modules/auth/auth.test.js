@@ -3,65 +3,28 @@ import { CerebralTest } from 'cerebral/test'
 
 import app from '../..'
 
-const articlesJsonResponse = JSON.stringify({
-  articles: [
-    {
-      slug: 'how-to-train-your-dragon',
-      title: 'How to train your dragon',
-      description: 'Ever wonder how?',
-      body: 'It takes a Jacobian',
-      tagList: ['dragons', 'training'],
-      createdAt: '2016-02-18T03:22:56.637Z',
-      updatedAt: '2016-02-18T03:48:35.824Z',
-      favorited: false,
-      favoritesCount: 0,
-      author: {
-        username: 'Tester',
-        bio: 'I work at statefarm',
-        image: 'https://i.stack.imgur.com/xHWG8.jpg',
-        following: false,
-      },
-    },
-    {
-      slug: 'how-to-train-your-dragon-2',
-      title: 'How to train your dragon 2',
-      description: 'So toothless',
-      body: 'It a dragon',
-      tagList: ['dragons', 'training'],
-      createdAt: '2016-02-18T03:22:56.637Z',
-      updatedAt: '2016-02-18T03:48:35.824Z',
-      favorited: false,
-      favoritesCount: 0,
-      author: {
-        username: 'Tester',
-        bio: 'I work at statefarm',
-        image: 'https://i.stack.imgur.com/xHWG8.jpg',
-        following: false,
-      },
-    },
-  ],
-  articlesCount: 2,
-})
-
 let cerebral
 
 beforeEach(() => {
   localStorage.removeItem('jwtHeader')
   mock.setup()
-  cerebral = CerebralTest(app)
-})
-
-test('setup', () => {})
-
-test('should be logged out', async () => {
-  expect.assertions(3)
-
   mock.get(/^.*\/articles(\?.*)?$/, (req, res) => {
     return res
       .status(200)
       .header('Content-Type', 'application/json')
-      .body(articlesJsonResponse)
+      .body(jsonResponse.articles)
   })
+  mock.get(/^.*\/tags\/?$/, (req, res) => {
+    return res
+      .status(200)
+      .header('Content-Type', 'application/json')
+      .body(jsonResponse.tags)
+  })
+  cerebral = CerebralTest(app)
+})
+
+test('should be logged out', async () => {
+  expect.assertions(3)
 
   cerebral.setState('auth.authenticated', true)
   cerebral.setState('auth.currentUser.email', 'test@example.com')
@@ -83,13 +46,13 @@ test('should login', async () => {
     return res
       .status(200)
       .header('Content-Type', 'application/json')
-      .header('Authorization', 'Token ' + validJWT)
+      .header('Authorization', 'Token ' + authHeader.validJWT)
       .body(
         JSON.stringify({
           user: {
             email: 'test@example.com',
             username: 'Tester',
-            token: validJWT,
+            token: authHeader.validJWT,
             bio: '',
             image: '',
           },
@@ -101,7 +64,7 @@ test('should login', async () => {
     return res
       .status(200)
       .header('Content-Type', 'application/json')
-      .body(articlesJsonResponse)
+      .body(jsonResponse.articles)
   })
 
   cerebral.setState('auth.loginForm.user.email', 'test@example.com')
@@ -115,7 +78,7 @@ test('should login', async () => {
       expect(state.auth.currentUser.username).toBe('Tester'),
       expect(state.auth.loginForm.user.email).toBe(''),
       expect(state.auth.loginForm.user.password).toBe(''),
-      expect(localStorage.getItem('jwtHeader')).toBe('"' + validJWT + '"'),
+      expect(localStorage.getItem('jwtHeader')).toBe('"' + authHeader.validJWT + '"'),
     ])
 })
 
@@ -155,13 +118,13 @@ test('should login on registration', async () => {
     return res
       .status(201)
       .header('Content-Type', 'application/json')
-      .header('Authorization', 'Token ' + validJWT)
+      .header('Authorization', 'Token ' + authHeader.validJWT)
       .body(
         JSON.stringify({
           user: {
             email: 'test@example.com',
             username: 'Tester',
-            token: validJWT,
+            token: authHeader.validJWT,
             bio: '',
             image: '',
           },
@@ -173,7 +136,7 @@ test('should login on registration', async () => {
     return res
       .status(200)
       .header('Content-Type', 'application/json')
-      .body(articlesJsonResponse)
+      .body(jsonResponse.articles)
   })
 
   cerebral.setState('auth.registerForm.user.username', 'Tester')
@@ -187,7 +150,7 @@ test('should login on registration', async () => {
       expect(state.auth.authenticated).toBe(true),
       expect(state.auth.currentUser.email).toBe('test@example.com'),
       expect(state.auth.currentUser.username).toBe('Tester'),
-      expect(localStorage.getItem('jwtHeader')).toBe('"' + validJWT + '"'),
+      expect(localStorage.getItem('jwtHeader')).toBe('"' + authHeader.validJWT + '"'),
       expect(state.currentPage).toBe('settings'),
       expect(state.auth.registerForm.user.username).toBe(''),
       expect(state.auth.registerForm.user.email).toBe(''),

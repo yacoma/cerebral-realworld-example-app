@@ -38,7 +38,7 @@
     "beforeEach": true,
     "afterEach": true,
     "apiUrl": true,
-    "validJWT": true,
-    "expiredJWT": true
+    "authHeader": true,
+    "jsonResponse": true
   }
 }

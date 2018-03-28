@@ -23,7 +23,7 @@ test('should initialize user state', () => {
             username: 'Tester',
             image: '',
             bio: '',
-            token: validJWT,
+            token: authHeader.validJWT,
           },
         },
       },
@@ -35,7 +35,7 @@ test('should initialize user state', () => {
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           Accept: 'application/json',
-          Authorization: 'Token ' + validJWT,
+          Authorization: 'Token ' + authHeader.validJWT,
         },
       }),
     },
@@ -43,12 +43,12 @@ test('should initialize user state', () => {
     expect(state.auth.authenticated).toBe(true),
     expect(state.auth.currentUser.email).toBe('test@example.com'),
     expect(state.auth.currentUser.username).toBe('Tester'),
-    expect(localStorage.getItem('jwtHeader')).toBe('"' + validJWT + '"'),
+    expect(localStorage.getItem('jwtHeader')).toBe('"' + authHeader.validJWT + '"'),
   ])
 })
 
 test('should remove current user state', () => {
-  localStorage.setItem('jwtHeader', JSON.stringify(validJWT))
+  localStorage.setItem('jwtHeader', JSON.stringify(authHeader.validJWT))
 
   return runAction(actions.removeUser, {
     state: {
@@ -67,7 +67,7 @@ test('should remove current user state', () => {
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           Accept: 'application/json',
-          Authorization: 'Token ' + validJWT,
+          Authorization: 'Token ' + authHeader.validJWT,
         },
       }),
     },
