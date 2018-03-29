@@ -55,7 +55,7 @@ const jsonResponse = {
     articlesCount: 2,
   }),
   tags: JSON.stringify({
-    tags: ['test', 'text', 'dragons', 'training']
+    tags: ['test', 'text', 'dragons', 'training'],
   }),
 }
 global.jsonResponse = jsonResponse

@@ -43,7 +43,9 @@ test('should initialize user state', () => {
     expect(state.auth.authenticated).toBe(true),
     expect(state.auth.currentUser.email).toBe('test@example.com'),
     expect(state.auth.currentUser.username).toBe('Tester'),
-    expect(localStorage.getItem('jwtHeader')).toBe('"' + authHeader.validJWT + '"'),
+    expect(localStorage.getItem('jwtHeader')).toBe(
+      '"' + authHeader.validJWT + '"'
+    ),
   ])
 })
 

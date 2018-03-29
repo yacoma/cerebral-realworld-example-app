@@ -78,7 +78,9 @@ test('should login', async () => {
       expect(state.auth.currentUser.username).toBe('Tester'),
       expect(state.auth.loginForm.user.email).toBe(''),
       expect(state.auth.loginForm.user.password).toBe(''),
-      expect(localStorage.getItem('jwtHeader')).toBe('"' + authHeader.validJWT + '"'),
+      expect(localStorage.getItem('jwtHeader')).toBe(
+        '"' + authHeader.validJWT + '"'
+      ),
     ])
 })
 
@@ -150,7 +152,9 @@ test('should login on registration', async () => {
       expect(state.auth.authenticated).toBe(true),
       expect(state.auth.currentUser.email).toBe('test@example.com'),
       expect(state.auth.currentUser.username).toBe('Tester'),
-      expect(localStorage.getItem('jwtHeader')).toBe('"' + authHeader.validJWT + '"'),
+      expect(localStorage.getItem('jwtHeader')).toBe(
+        '"' + authHeader.validJWT + '"'
+      ),
       expect(state.currentPage).toBe('settings'),
       expect(state.auth.registerForm.user.username).toBe(''),
       expect(state.auth.registerForm.user.email).toBe(''),
