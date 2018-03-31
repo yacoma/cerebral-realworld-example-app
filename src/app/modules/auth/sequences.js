@@ -1,6 +1,6 @@
 import { sequence } from 'cerebral'
 import { state, props, resolveObject } from 'cerebral/tags'
-import { set, when } from 'cerebral/operators'
+import { set, equals, when } from 'cerebral/operators'
 import { httpPost, httpPut } from '@cerebral/http/operators'
 import { redirectToSignal } from '@cerebral/router/operators'
 
@@ -8,6 +8,25 @@ import { removeEmptyFields } from '../../factories'
 import { fetchArticlesFeed, fetchAllArticles } from '../blog/sequences'
 import * as actions from './actions'
 import * as factories from './factories'
+
+const redirectToLastVisited = sequence('Redirect to last visited page', [
+  when(state`lastVisited`),
+  {
+    true: [
+      equals(state`lastVisited`),
+      {
+        editor: redirectToSignal('editorRouted'),
+        otherwise: redirectToSignal(
+          'pageRouted',
+          resolveObject({
+            page: state`lastVisited`,
+          })
+        ),
+      },
+    ],
+    false: redirectToSignal('homeRouted'),
+  },
+])
 
 export const registerUser = sequence('Register new user', [
   set(state`auth.registerFormIsLoading`, true),
@@ -19,18 +38,10 @@ export const registerUser = sequence('Register new user', [
       set(state`auth.registerForm.user.password`, ''),
       set(state`errorMessages`, []),
       actions.initUser,
+      actions.setUser,
       fetchArticlesFeed,
       set(state`auth.registerFormIsLoading`, false),
-      when(state`lastVisited`),
-      {
-        true: redirectToSignal(
-          'pageRouted',
-          resolveObject({
-            page: state`lastVisited`,
-          })
-        ),
-        false: redirectToSignal('homeRouted'),
-      },
+      redirectToLastVisited,
     ],
     error: [
       set(state`auth.registerForm.user.password`, ''),
@@ -49,18 +60,10 @@ export const signinUser = sequence('Sign-in user', [
       set(state`auth.loginForm.user.password`, ''),
       set(state`errorMessages`, []),
       actions.initUser,
+      actions.setUser,
       fetchArticlesFeed,
       set(state`auth.loginFormIsLoading`, false),
-      when(state`lastVisited`),
-      {
-        true: redirectToSignal(
-          'pageRouted',
-          resolveObject({
-            page: state`lastVisited`,
-          })
-        ),
-        false: redirectToSignal('homeRouted'),
-      },
+      redirectToLastVisited,
     ],
     error: [
       set(state`auth.loginForm.user.password`, ''),
@@ -89,6 +92,7 @@ export const changeSettings = sequence('Change settings', [
       set(state`auth.settingsForm.user.email`, ''),
       set(state`auth.settingsForm.user.password`, ''),
       set(state`errorMessages`, []),
+      actions.setUser,
       set(state`auth.settingsFormIsLoading`, false),
       redirectToSignal('homeRouted'),
     ],

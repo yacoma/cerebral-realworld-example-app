@@ -20,6 +20,12 @@ beforeEach(() => {
       .header('Content-Type', 'application/json')
       .body(jsonResponse.tags)
   })
+  mock.get(apiUrl + '/user', (req, res) => {
+    return res
+      .status(200)
+      .header('Content-Type', 'application/json')
+      .body(jsonResponse.user)
+  })
   cerebral = CerebralTest(app)
 })
 
@@ -144,6 +150,8 @@ test('should login on registration', async () => {
   cerebral.setState('auth.registerForm.user.username', 'Tester')
   cerebral.setState('auth.registerForm.user.email', 'test@example.com')
   cerebral.setState('auth.registerForm.user.password', 'test0123')
+  cerebral.setState('hasAuthenticated', true)
+  cerebral.setState('currentPage', 'register')
   cerebral.setState('lastVisited', 'settings')
 
   await cerebral

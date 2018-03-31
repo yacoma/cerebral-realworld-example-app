@@ -4,25 +4,17 @@ import { runAction } from 'cerebral/test'
 
 import * as actions from './actions'
 
-test('should initialize user state', () => {
+test('should initialize user', () => {
   return runAction(actions.initUser, {
     state: {
       auth: {
         authenticated: false,
-        currentUser: {
-          email: '',
-          username: '',
-        },
       },
     },
     props: {
       response: {
         result: {
           user: {
-            email: 'test@example.com',
-            username: 'Tester',
-            image: '',
-            bio: '',
             token: authHeader.validJWT,
           },
         },
@@ -41,11 +33,37 @@ test('should initialize user state', () => {
     },
   }).then(({ state }) => [
     expect(state.auth.authenticated).toBe(true),
-    expect(state.auth.currentUser.email).toBe('test@example.com'),
-    expect(state.auth.currentUser.username).toBe('Tester'),
     expect(localStorage.getItem('jwtHeader')).toBe(
       '"' + authHeader.validJWT + '"'
     ),
+  ])
+})
+
+test('should set user state', () => {
+  return runAction(actions.setUser, {
+    state: {
+      auth: {
+        currentUser: {
+          email: '',
+          username: '',
+        },
+      },
+    },
+    props: {
+      response: {
+        result: {
+          user: {
+            email: 'test@example.com',
+            username: 'Tester',
+            image: '',
+            bio: '',
+          },
+        },
+      },
+    },
+  }).then(({ state }) => [
+    expect(state.auth.currentUser.email).toBe('test@example.com'),
+    expect(state.auth.currentUser.username).toBe('Tester'),
   ])
 })
 

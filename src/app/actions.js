@@ -8,7 +8,7 @@ export function authenticate({ state }) {
   }
 }
 
-export function initApp({ state, storage, path }) {
+export function validateJwt({ state, storage, path }) {
   const jwtHeader = storage.get('jwtHeader')
   if (jwtHeader) {
     const claims = jwtDecode(jwtHeader)
@@ -21,11 +21,4 @@ export function initApp({ state, storage, path }) {
     return path.unauthenticated()
   }
   return path.unauthenticated()
-}
-
-export function setCurrentUser({ props, state }) {
-  state.set('auth.currentUser.email', props.response.result.user.email)
-  state.set('auth.currentUser.username', props.response.result.user.username)
-  state.set('auth.currentUser.image', props.response.result.user.image)
-  state.set('auth.currentUser.bio', props.response.result.user.bio)
 }

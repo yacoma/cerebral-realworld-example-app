@@ -1,50 +1,91 @@
 import { sequence } from 'cerebral'
 import { props, state } from 'cerebral/tags'
-import { set } from 'cerebral/operators'
-import { httpGet } from '@cerebral/http/operators'
+import { set, equals, when } from 'cerebral/operators'
 import { redirectToSignal } from '@cerebral/router/operators'
 
-import routeTo from './routeTo'
-import * as actions from './actions'
+import {
+  fetchAllArticles,
+  fetchArticlesFeed,
+  fetchCurrentArticle,
+  fetchTags,
+} from './modules/blog/sequences'
+import {
+  fetchProfile,
+  fetchCreatedArticles,
+  fetchFavoritedArticles,
+} from './modules/profile/sequences'
 
-export const initialize = sequence('Initiate App', [
-  actions.initApp,
-  {
-    authenticated: [httpGet('/user'), actions.setCurrentUser],
-    unauthenticated: [],
-  },
-])
+import { authenticate } from './actions'
+import { routeTo } from './factories'
 
 export const redirectToLogin = sequence('Redirect to login', [
   redirectToSignal('pageRouted', { page: 'login' }),
 ])
 
-export const routeToHome = sequence('Route to home', [
-  set(props`page`, 'home'),
-  routeTo,
+export const routeToHome = routeTo('home', [
+  set(state`blog.currentArticlePage`, 1),
+  when(state`auth.authenticated`),
+  {
+    true: fetchArticlesFeed,
+    false: fetchAllArticles,
+  },
+  fetchTags,
 ])
 
-export const routeToPage = sequence('Route to page', [routeTo])
-
-export const routeToArticle = sequence('Route to article', [
-  set(props`page`, 'article'),
-  routeTo,
+export const routeToPage = routeTo(props`page`, [
+  equals(props`page`),
+  {
+    login: [],
+    register: [],
+    settings: [set(state`lastVisited`, 'settings'), authenticate],
+    otherwise: redirectToSignal('homeRouted'),
+  },
 ])
 
-export const routeToEditor = sequence('Route to editor', [
-  set(props`page`, 'editor'),
-  routeTo,
+export const routeToArticle = routeTo('article', [
+  when(props`slug`),
+  {
+    true: [
+      set(state`blog.currentArticleSlug`, props`slug`),
+      fetchCurrentArticle,
+    ],
+    false: redirectToSignal('homeRouted'),
+  },
 ])
 
-export const routeToProfile = sequence('Route to profile', [
-  set(props`page`, 'profile'),
-  routeTo,
+export const routeToEditor = routeTo('editor', [
+  when(props`slug`),
+  {
+    true: [
+      set(
+        state`blog.editorForm.article.tagList`,
+        state`blog.articles.${state`blog.currentArticleSlug`}.tagList`
+      ),
+      set(state`lastVisited`, 'editor'),
+      set(state`blog.currentArticleSlug`, props`slug`),
+    ],
+    false: [
+      set(state`lastVisited`, 'editor'),
+      set(state`blog.currentArticleSlug`, ''),
+    ],
+  },
 ])
 
-export const routeToFavorites = sequence('Route to favorites', [
-  set(props`page`, 'profile'),
-  set(props`favorites`, true),
-  routeTo,
+export const routeToProfile = routeTo('profile', [
+  when(props`username`),
+  {
+    true: [
+      set(state`profile.currentProfile.username`, props`username`),
+      fetchProfile,
+      set(state`blog.currentArticlePage`, 1),
+      when(props`favorites`, favorites => favorites === 'favorites'),
+      {
+        true: fetchFavoritedArticles,
+        false: fetchCreatedArticles,
+      },
+    ],
+    false: redirectToSignal('homeRouted'),
+  },
 ])
 
 export const changeField = sequence('Change field', [

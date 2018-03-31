@@ -13,44 +13,38 @@ const jwtHeader = localStorage.getItem('jwtHeader')
   ? JSON.parse(localStorage.getItem('jwtHeader'))
   : null
 
-export default Module(({ controller }) => {
-  controller.on('initialized', () => {
-    controller.getSignal('appMounted')({})
-  })
-  return {
-    state: {
-      currentPage: '',
-      lastVisited: '',
-      errorMessages: [],
-      pageIsLoading: false,
-    },
-    signals: {
-      appMounted: sequences.initialize,
-      homeRouted: sequences.routeToHome,
-      pageRouted: sequences.routeToPage,
-      articleRouted: sequences.routeToArticle,
-      editorRouted: sequences.routeToEditor,
-      profileRouted: sequences.routeToProfile,
-      favoritesRouted: sequences.routeToFavorites,
-      fieldChanged: sequences.changeField,
-    },
-    modules: {
-      blog,
-      profile,
-      auth,
-      router,
-      storage: storage({ target: localStorage }),
-    },
-    providers: {
-      http: HttpProvider({
-        baseUrl: 'https://conduit.productionready.io/api',
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-          Accept: 'application/json',
-          Authorization: jwtHeader ? 'Token ' + jwtHeader : '',
-        },
-      }),
-    },
-    catch: [[AuthenticationError, sequences.redirectToLogin]],
-  }
+export default Module({
+  state: {
+    currentPage: '',
+    lastVisited: '',
+    errorMessages: [],
+    pageIsLoading: false,
+    hasAuthenticated: false,
+  },
+  signals: {
+    homeRouted: sequences.routeToHome,
+    pageRouted: sequences.routeToPage,
+    articleRouted: sequences.routeToArticle,
+    editorRouted: sequences.routeToEditor,
+    profileRouted: sequences.routeToProfile,
+    fieldChanged: sequences.changeField,
+  },
+  modules: {
+    blog,
+    profile,
+    auth,
+    router,
+    storage: storage({ target: localStorage }),
+  },
+  providers: {
+    http: HttpProvider({
+      baseUrl: 'https://conduit.productionready.io/api',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        Accept: 'application/json',
+        Authorization: jwtHeader ? 'Token ' + jwtHeader : '',
+      },
+    }),
+  },
+  catch: [[AuthenticationError, sequences.redirectToLogin]],
 })

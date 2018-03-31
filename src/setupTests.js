@@ -57,5 +57,14 @@ const jsonResponse = {
   tags: JSON.stringify({
     tags: ['test', 'text', 'dragons', 'training'],
   }),
+  user: JSON.stringify({
+    user: {
+      email: 'test@example.com',
+      username: 'Tester',
+      token: authHeader.validJWT,
+      bio: 'My Bio.',
+      image: 'image.png',
+    },
+  }),
 }
 global.jsonResponse = jsonResponse

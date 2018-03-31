@@ -21,32 +21,24 @@ beforeEach(() => {
       .header('Content-Type', 'application/json')
       .body(jsonResponse.tags)
   })
+  mock.get(apiUrl + '/user', (req, res) => {
+    return res
+      .status(200)
+      .header('Content-Type', 'application/json')
+      .body(jsonResponse.user)
+  })
+
   cerebral = CerebralTest(app)
 })
 
 test('should authenticate when valid token in localStorage', async () => {
   expect.assertions(5)
 
-  mock.get(apiUrl + '/user', (req, res) => {
-    return res
-      .status(200)
-      .header('Content-Type', 'application/json')
-      .body(
-        JSON.stringify({
-          user: {
-            email: 'test@example.com',
-            username: 'Tester',
-            token: authHeader.validJWT,
-            bio: 'My Bio.',
-            image: 'image.png',
-          },
-        })
-      )
-  })
-
   localStorage.setItem('jwtHeader', JSON.stringify(authHeader.validJWT))
+  cerebral.setState('hasAuthenticated', false)
+
   await cerebral
-    .runSignal('appMounted')
+    .runSignal('editorRouted')
     .then(({ state }) => [
       expect(state.auth.authenticated).toBe(true),
       expect(state.auth.currentUser.email).toBe('test@example.com'),

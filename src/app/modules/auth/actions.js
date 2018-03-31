@@ -7,6 +7,9 @@ export function initUser({ props, state, storage, http }) {
     },
   })
   state.set('auth.authenticated', true)
+}
+
+export function setUser({ props, state }) {
   state.set('auth.currentUser.email', props.response.result.user.email)
   state.set('auth.currentUser.username', props.response.result.user.username)
   state.set('auth.currentUser.image', props.response.result.user.image)

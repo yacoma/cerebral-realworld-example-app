@@ -7,15 +7,11 @@ export default Router({
       signal: 'articleRouted',
     },
     {
-      path: '/editor/:slug',
+      path: '/editor/:slug?',
       signal: 'editorRouted',
     },
     {
-      path: '/@:username/favorites',
-      signal: 'favoritesRouted',
-    },
-    {
-      path: '/@:username',
+      path: '/@:username/:favorites?',
       signal: 'profileRouted',
     },
     {
@@ -28,4 +24,6 @@ export default Router({
     },
   ],
   onlyHash: true,
+  allowEscape: true,
+  filterFalsy: true,
 })
