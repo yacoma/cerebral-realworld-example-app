@@ -16,7 +16,7 @@ export default connect(
           type="text"
           placeholder="Article Title"
           value={field || articleTitle}
-          onChange={e => fieldChanged({ path, value: e.target.value })}
+          onChange={(e) => fieldChanged({ path, value: e.target.value })}
         />
       </fieldset>
     )

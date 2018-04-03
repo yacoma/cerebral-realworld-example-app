@@ -13,7 +13,7 @@ export default connect(
       return null
     }
 
-    const handleClick = event => {
+    const handleClick = (event) => {
       event.preventDefault()
       feedTabClicked({ feed: 'feed' })
     }

@@ -27,7 +27,7 @@ export function routeTo(page, continueSequence) {
   ])
 }
 
-export const removeEmptyFields = form =>
+export const removeEmptyFields = (form) =>
   function removeEmptyFields({ state }) {
     const formState = state.get(form)
     const formKey = Object.keys(formState)[0]

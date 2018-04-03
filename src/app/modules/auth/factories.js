@@ -5,7 +5,7 @@ import { equals, set } from 'cerebral/operators'
 import { redirectToLogin } from '../../sequences'
 import { getValidationErrorMessages } from './actions'
 
-export const showValidationError = defaultErrorMessage =>
+export const showValidationError = (defaultErrorMessage) =>
   sequence('Show validation error', [
     equals(props`error.response.status`),
     {

@@ -11,8 +11,8 @@ export default connect(
     if (tags) {
       return (
         <div className="tag-list">
-          {tags.map(tag => {
-            const handleClick = event => {
+          {tags.map((tag) => {
+            const handleClick = (event) => {
               event.preventDefault()
               tagClicked({ tag })
             }

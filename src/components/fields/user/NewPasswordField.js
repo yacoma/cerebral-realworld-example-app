@@ -15,7 +15,7 @@ export default connect(
           type="password"
           placeholder="New Password"
           value={field}
-          onChange={e => fieldChanged({ path, value: e.target.value })}
+          onChange={(e) => fieldChanged({ path, value: e.target.value })}
         />
       </fieldset>
     )

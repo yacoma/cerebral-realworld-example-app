@@ -8,7 +8,7 @@ export default connect(
     feedTabClicked: signal`blog.feedTabClicked`,
   },
   function GlobalFeedTab({ currentFeed, feedTabClicked }) {
-    const handleClick = event => {
+    const handleClick = (event) => {
       event.preventDefault()
       feedTabClicked({ feed: 'all' })
     }

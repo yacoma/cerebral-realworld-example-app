@@ -16,7 +16,7 @@ export default connect(
           type="text"
           placeholder="Your Name"
           value={field || currentUserName}
-          onChange={e => fieldChanged({ path, value: e.target.value })}
+          onChange={(e) => fieldChanged({ path, value: e.target.value })}
         />
       </fieldset>
     )

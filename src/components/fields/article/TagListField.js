@@ -18,7 +18,7 @@ export default connect(
     tagAdded,
     tagRemoved,
   }) {
-    const watchForEnter = e => {
+    const watchForEnter = (e) => {
       if (e.keyCode === 13) {
         e.preventDefault()
         tagAdded()
@@ -31,7 +31,7 @@ export default connect(
           type="text"
           placeholder="Enter tags"
           value={field}
-          onChange={e => fieldChanged({ path, value: e.target.value })}
+          onChange={(e) => fieldChanged({ path, value: e.target.value })}
           onKeyUp={watchForEnter}
         />
         <br />

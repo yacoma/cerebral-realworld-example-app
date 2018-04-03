@@ -16,7 +16,7 @@ export default connect(
           type="email"
           placeholder="Email"
           value={field || currentEmail}
-          onChange={e => fieldChanged({ path, value: e.target.value })}
+          onChange={(e) => fieldChanged({ path, value: e.target.value })}
         />
       </fieldset>
     )

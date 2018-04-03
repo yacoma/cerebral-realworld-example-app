@@ -16,7 +16,7 @@ export default connect(
           rows="8"
           placeholder="Write your article (in markdown)"
           value={field || articleBody}
-          onChange={e => fieldChanged({ path, value: e.target.value })}
+          onChange={(e) => fieldChanged({ path, value: e.target.value })}
         />
       </fieldset>
     )

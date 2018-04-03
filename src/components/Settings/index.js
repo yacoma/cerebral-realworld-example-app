@@ -16,7 +16,7 @@ export default connect(
     logoutButtonClicked: signal`auth.logoutButtonClicked`,
   },
   function Settings({ isLoading, formSubmitted, logoutButtonClicked }) {
-    const handleSubmit = event => {
+    const handleSubmit = (event) => {
       event.preventDefault()
       formSubmitted()
     }

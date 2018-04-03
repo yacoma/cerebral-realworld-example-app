@@ -78,7 +78,7 @@ export const routeToProfile = routeTo('profile', [
       set(state`profile.currentProfile.username`, props`username`),
       fetchProfile,
       set(state`blog.currentArticlePage`, 1),
-      when(props`favorites`, favorites => favorites === 'favorites'),
+      when(props`favorites`, (favorites) => favorites === 'favorites'),
       {
         true: fetchFavoritedArticles,
         false: fetchCreatedArticles,

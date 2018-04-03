@@ -10,7 +10,7 @@ export default connect(
     formSubmitted: signal`auth.registerFormSubmitted`,
   },
   function Register({ isLoading, formSubmitted }) {
-    const handleSubmit = event => {
+    const handleSubmit = (event) => {
       event.preventDefault()
       formSubmitted()
     }

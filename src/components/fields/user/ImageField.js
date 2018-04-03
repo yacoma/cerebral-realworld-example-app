@@ -16,7 +16,7 @@ export default connect(
           type="text"
           placeholder="URL of profile picture"
           value={field || currentImage}
-          onChange={e => fieldChanged({ path, value: e.target.value })}
+          onChange={(e) => fieldChanged({ path, value: e.target.value })}
         />
       </fieldset>
     )

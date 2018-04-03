@@ -15,7 +15,7 @@ export default connect(
           rows="3"
           placeholder="Write a comment..."
           value={field}
-          onChange={e => fieldChanged({ path, value: e.target.value })}
+          onChange={(e) => fieldChanged({ path, value: e.target.value })}
         />
       </div>
     )

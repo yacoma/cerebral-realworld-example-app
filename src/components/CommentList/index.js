@@ -13,7 +13,7 @@ export default connect(
       return null
     }
 
-    return Object.keys(comments).map(commentId => {
+    return Object.keys(comments).map((commentId) => {
       return <Comment commentId={commentId} key={commentId} />
     })
   }

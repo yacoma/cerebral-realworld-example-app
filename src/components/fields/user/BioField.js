@@ -16,7 +16,7 @@ export default connect(
           rows="8"
           placeholder="Short bio about you"
           value={field || currentBio}
-          onChange={e => fieldChanged({ path, value: e.target.value })}
+          onChange={(e) => fieldChanged({ path, value: e.target.value })}
         />
       </fieldset>
     )

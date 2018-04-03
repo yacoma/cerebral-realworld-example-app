@@ -25,9 +25,9 @@ export default connect(
     return (
       <nav>
         <ul className="pagination">
-          {pageRange.map(articlePage => {
+          {pageRange.map((articlePage) => {
             const isCurrent = articlePage === currentArticlePage
-            const clickHandler = e => {
+            const clickHandler = (e) => {
               e.preventDefault()
               articlePageRequested({ articlePage })
             }

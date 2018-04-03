@@ -21,7 +21,7 @@ export default connect(
 
     return (
       <div>
-        {Object.keys(articles).map(slug => {
+        {Object.keys(articles).map((slug) => {
           return <ArticlePreview key={slug} slug={slug} />
         })}
         <ListPagination />

@@ -13,7 +13,7 @@ export default connect(
 
     return (
       <ul className="tag-list">
-        {tags.map(tag => {
+        {tags.map((tag) => {
           return (
             <li className="tag-default tag-pill tag-outline" key={tag}>
               {tag}
