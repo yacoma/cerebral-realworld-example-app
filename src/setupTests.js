@@ -1,5 +1,3 @@
-import 'jest-localstorage-mock'
-
 import { API_URL } from './constants'
 
 global.apiUrl = API_URL

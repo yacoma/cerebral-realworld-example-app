@@ -20,9 +20,9 @@ To get the frontend running locally:
 
 - Clone this repo
 - `npm install` to install all required dependencies
-- `npm start` to start the local server (this project uses create-react-app)
+- `npm start` to start the local server (this project uses parcel)
 
-Local web server will use port 3030 instead of standard React's port 3000 to prevent conflicts with some backends like Node or Rails. You can configure port in scripts section of `package.json`: we use [cross-env](https://github.com/kentcdodds/cross-env) to set environment variable PORT for React scripts, this is Windows-compatible way of setting environment variables.
+The local web server will run on port 1234. You can override the default port with the parcel `-p <port number>` option.
 
 We recommend installing the [Cerebral debugger](https://cerebraljs.com/docs/introduction/debugger.html), which allows you to follow exactly what happens in the App. It virtualizes the signal flow, the recent state of the state-tree, the history of mutations and provider calls and the component usage.
 You can also create [snapshot tests](<https://cerebraljs.com/docs/api/test#test-snapshot-testing-(beta)>) directly from the debugger.
