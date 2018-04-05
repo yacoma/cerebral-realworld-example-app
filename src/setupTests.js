@@ -1,7 +1,8 @@
 import 'jest-localstorage-mock'
 
-const apiUrl = 'https://conduit.productionready.io/api'
-global.apiUrl = apiUrl
+import { API_URL } from './constants'
+
+global.apiUrl = API_URL
 
 const authHeader = {
   validJWT:
