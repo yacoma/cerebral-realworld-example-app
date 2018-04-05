@@ -1,0 +1,1094 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should load home page 1`] = `
+<div
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+>
+  <nav
+    className="navbar navbar-light"
+  >
+    <div
+      className="container"
+    >
+      <a
+        className="navbar-brand"
+        href="/#/"
+      >
+        conduit
+      </a>
+      <ul
+        className="nav navbar-nav pull-xs-right"
+      >
+        <li
+          className="nav-item"
+        >
+          <a
+            className="nav-link active"
+            href="/#/"
+          >
+            Home
+          </a>
+        </li>
+        <li
+          className="nav-item"
+        >
+          <a
+            className="nav-link"
+            href="/#/login"
+          >
+            Sign in
+          </a>
+        </li>
+        <li
+          className="nav-item"
+        >
+          <a
+            className="nav-link"
+            href="/#/register"
+          >
+            Sign up
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div
+    className="home-page"
+  >
+    <div
+      className="banner"
+    >
+      <div
+        className="container"
+      >
+        <h1
+          className="logo-font"
+        >
+          conduit
+        </h1>
+        <p>
+          A place to share your knowledge.
+        </p>
+      </div>
+    </div>
+    <div
+      className="container page"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-9"
+        >
+          <div
+            className="feed-toggle"
+          >
+            <ul
+              className="nav nav-pills outline-active"
+            >
+              <li
+                className="nav-item"
+              >
+                <a
+                  className="nav-link active"
+                  href=""
+                  onClick={[Function]}
+                >
+                  Global Feed
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div
+              className="article-preview"
+            >
+              <div
+                className="article-meta"
+              >
+                <a
+                  href="/#/@Alex123456789"
+                >
+                  <img
+                    alt=""
+                    src="https://static.productionready.io/images/smiley-cyrus.jpg"
+                  />
+                </a>
+                <div
+                  className="info"
+                >
+                  <a
+                    className="author"
+                    href="/#/@Alex123456789"
+                  >
+                    Alex123456789
+                  </a>
+                  <span
+                    className="date"
+                  >
+                    Thu Apr 05 2018
+                  </span>
+                </div>
+                <button
+                  className="btn btn-sm btn-outline-primary pull-xs-right"
+                  onClick={[Function]}
+                >
+                  <i
+                    className="ion-heart"
+                  />
+                   
+                  1
+                </button>
+              </div>
+              <a
+                className="preview-link"
+                href="/#/article/whahaha-5o8dgj"
+              >
+                <h1>
+                  whahaha
+                </h1>
+                <p>
+                  ttt
+                </p>
+                <span>
+                  Read more...
+                </span>
+              </a>
+            </div>
+            <div
+              className="article-preview"
+            >
+              <div
+                className="article-meta"
+              >
+                <a
+                  href="/#/@vesve"
+                >
+                  <img
+                    alt=""
+                    src="https://static.productionready.io/images/smiley-cyrus.jpg"
+                  />
+                </a>
+                <div
+                  className="info"
+                >
+                  <a
+                    className="author"
+                    href="/#/@vesve"
+                  >
+                    vesve
+                  </a>
+                  <span
+                    className="date"
+                  >
+                    Thu Apr 05 2018
+                  </span>
+                </div>
+                <button
+                  className="btn btn-sm btn-outline-primary pull-xs-right"
+                  onClick={[Function]}
+                >
+                  <i
+                    className="ion-heart"
+                  />
+                   
+                  1
+                </button>
+              </div>
+              <a
+                className="preview-link"
+                href="/#/article/szvvszv-zwc05v"
+              >
+                <h1>
+                  szvvszV
+                </h1>
+                <p>
+                  DVZV
+                </p>
+                <span>
+                  Read more...
+                </span>
+              </a>
+            </div>
+            <nav>
+              <ul
+                className="pagination"
+              >
+                <li
+                  className="page-item active"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    1
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    2
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    3
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    4
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    5
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    6
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    7
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    8
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    9
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    10
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    11
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    12
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    13
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    14
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    15
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    16
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    17
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    18
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    19
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    20
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    21
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    22
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    23
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    24
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    25
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    26
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    27
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    28
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    29
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    30
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    31
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    32
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    33
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    34
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    35
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    36
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    37
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    38
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    39
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    40
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    41
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    42
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    43
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    44
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    45
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    46
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    47
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    48
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    49
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                    href=""
+                  >
+                    50
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div
+          className="col-md-3"
+        >
+          <div
+            className="sidebar"
+          >
+            <p>
+              Popular Tags
+            </p>
+            <div
+              className="tag-list"
+            >
+              <a
+                className="tag-pill tag-default"
+                href=""
+                onClick={[Function]}
+              >
+                dragons
+              </a>
+              <a
+                className="tag-pill tag-default"
+                href=""
+                onClick={[Function]}
+              >
+                training
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div
+      className="container"
+    >
+      <a
+        className="logo-font"
+        href="/#/"
+      >
+        conduit
+      </a>
+      <span
+        className="attribution"
+      >
+        An interactive learning project from
+         
+        <a
+          href="https://thinkster.io"
+        >
+          Thinkster
+        </a>
+        . Code & design licensed under MIT.
+      </span>
+    </div>
+  </footer>
+</div>
+`;
+
+exports[`should load home page 2`] = `
+Array [
+  Action {
+    "name": "operator.set(state\`pageIsLoading\`, true)",
+  },
+  Mutation {
+    "args": Array [
+      true,
+    ],
+    "method": "set",
+    "path": "pageIsLoading",
+  },
+  Action {
+    "name": "operator.when(state\`hasAuthenticated\`)",
+  },
+  Path {
+    "name": "false",
+  },
+  Action {
+    "name": "validateJwt",
+  },
+  Provider {
+    "args": Array [
+      "jwtHeader",
+    ],
+    "method": "storage.get",
+  },
+  Path {
+    "name": "unauthenticated",
+  },
+  Action {
+    "name": "operator.set(state\`hasAuthenticated\`, true)",
+  },
+  Mutation {
+    "args": Array [
+      true,
+    ],
+    "method": "set",
+    "path": "hasAuthenticated",
+  },
+  Action {
+    "name": "operator.set(state\`currentPage\`, home)",
+  },
+  Mutation {
+    "args": Array [
+      "home",
+    ],
+    "method": "set",
+    "path": "currentPage",
+  },
+  Action {
+    "name": "operator.set(state\`blog.currentArticlePage\`, 1)",
+  },
+  Mutation {
+    "args": Array [
+      1,
+    ],
+    "method": "set",
+    "path": "blog.currentArticlePage",
+  },
+  Action {
+    "name": "operator.when(state\`auth.authenticated\`)",
+  },
+  Path {
+    "name": "false",
+  },
+  Action {
+    "name": "operator.set(state\`blog.articlesAreLoading\`, true)",
+  },
+  Mutation {
+    "args": Array [
+      true,
+    ],
+    "method": "set",
+    "path": "blog.articlesAreLoading",
+  },
+  Action {
+    "name": "clearArticles",
+  },
+  Mutation {
+    "args": Array [
+      Object {
+        "szvvszv-zwc05v": Object {
+          "author": Object {
+            "bio": null,
+            "following": false,
+            "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+            "username": "vesve",
+          },
+          "body": "ZSVSZVS",
+          "createdAt": "2018-04-05T10:45:21.539Z",
+          "description": "DVZV",
+          "favorited": false,
+          "favoritesCount": 1,
+          "slug": "szvvszv-zwc05v",
+          "tagList": Array [],
+          "title": "szvvszV",
+          "updatedAt": "2018-04-05T10:45:21.539Z",
+        },
+        "whahaha-5o8dgj": Object {
+          "author": Object {
+            "bio": null,
+            "following": false,
+            "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+            "username": "Alex123456789",
+          },
+          "body": "my article",
+          "createdAt": "2018-04-05T11:16:34.983Z",
+          "description": "ttt",
+          "favorited": false,
+          "favoritesCount": 1,
+          "slug": "whahaha-5o8dgj",
+          "tagList": Array [],
+          "title": "whahaha",
+          "updatedAt": "2018-04-05T11:16:34.983Z",
+        },
+      },
+    ],
+    "method": "set",
+    "path": "blog.articles",
+  },
+  Action {
+    "name": "operator.set(state\`blog.currentFeed\`, all)",
+  },
+  Mutation {
+    "args": Array [
+      "all",
+    ],
+    "method": "set",
+    "path": "blog.currentFeed",
+  },
+  Action {
+    "name": "httpGet",
+  },
+  Provider {
+    "args": Array [
+      "/articles?limit=10&offset=0",
+      Object {},
+      undefined,
+    ],
+    "method": "http.get",
+  },
+  Action {
+    "name": "setArticles",
+  },
+  Mutation {
+    "args": Array [
+      500,
+    ],
+    "method": "set",
+    "path": "blog.articlesCount",
+  },
+  Mutation {
+    "args": Array [
+      Object {
+        "author": Object {
+          "bio": null,
+          "following": false,
+          "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+          "username": "Alex123456789",
+        },
+        "body": "my article",
+        "createdAt": "2018-04-05T11:16:34.983Z",
+        "description": "ttt",
+        "favorited": false,
+        "favoritesCount": 1,
+        "slug": "whahaha-5o8dgj",
+        "tagList": Array [],
+        "title": "whahaha",
+        "updatedAt": "2018-04-05T11:16:34.983Z",
+      },
+    ],
+    "method": "set",
+    "path": "blog.articles.whahaha-5o8dgj",
+  },
+  Mutation {
+    "args": Array [
+      Object {
+        "author": Object {
+          "bio": null,
+          "following": false,
+          "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+          "username": "vesve",
+        },
+        "body": "ZSVSZVS",
+        "createdAt": "2018-04-05T10:45:21.539Z",
+        "description": "DVZV",
+        "favorited": false,
+        "favoritesCount": 1,
+        "slug": "szvvszv-zwc05v",
+        "tagList": Array [],
+        "title": "szvvszV",
+        "updatedAt": "2018-04-05T10:45:21.539Z",
+      },
+    ],
+    "method": "set",
+    "path": "blog.articles.szvvszv-zwc05v",
+  },
+  Action {
+    "name": "operator.set(state\`blog.articlesAreLoading\`, false)",
+  },
+  Mutation {
+    "args": Array [
+      false,
+    ],
+    "method": "set",
+    "path": "blog.articlesAreLoading",
+  },
+  Action {
+    "name": "clearTags",
+  },
+  Mutation {
+    "args": Array [
+      Array [
+        "dragons",
+        "training",
+      ],
+    ],
+    "method": "set",
+    "path": "blog.tags",
+  },
+  Action {
+    "name": "httpGet",
+  },
+  Provider {
+    "args": Array [
+      "/tags",
+      Object {},
+      undefined,
+    ],
+    "method": "http.get",
+  },
+  Action {
+    "name": "addTags",
+  },
+  Mutation {
+    "args": Array [
+      "dragons",
+    ],
+    "method": "push",
+    "path": "blog.tags",
+  },
+  Mutation {
+    "args": Array [
+      "training",
+    ],
+    "method": "push",
+    "path": "blog.tags",
+  },
+  Action {
+    "name": "operator.set(state\`pageIsLoading\`, false)",
+  },
+  Mutation {
+    "args": Array [
+      false,
+    ],
+    "method": "set",
+    "path": "pageIsLoading",
+  },
+]
+`;
