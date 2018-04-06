@@ -6,10 +6,10 @@
 # testing
 /coverage
 
-# production
+# build
 /build
-dist
-.cache
+/dist
+/.cache
 
 # misc
 .DS_Store

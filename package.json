@@ -15,10 +15,10 @@
   },
   "homepage": "https://conduit.yacoma.it",
   "scripts": {
-    "build": "parcel build public/index.html",
+    "build": "parcel build -d build public/index.html",
     "format": "npm run lint -- --fix && prettier --write \"*.md\" \"*.json\"",
     "lint": "eslint \"src/**/*.js\"",
-    "start": "parcel serve public/index.html --open",
+    "start": "parcel serve -d build public/index.html --open",
     "test": "jest"
   },
   "dependencies": {
