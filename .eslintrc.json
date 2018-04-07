@@ -8,8 +8,8 @@
   },
   "env": {
     "browser": true,
-    "node": true,
-    "es6": true
+    "es6": true,
+    "jest": true
   },
   "extends": [
     "standard",
@@ -23,10 +23,6 @@
   },
   "globals": {
     "localStorage": true,
-    "test": true,
-    "expect": true,
-    "beforeEach": true,
-    "afterEach": true,
     "apiUrl": true,
     "authHeader": true,
     "jsonResponse": true
