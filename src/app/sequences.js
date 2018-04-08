@@ -1,7 +1,6 @@
 import { sequence } from 'cerebral'
 import { props, state } from 'cerebral/tags'
 import { set, equals, when } from 'cerebral/operators'
-import { redirectToSignal } from '@cerebral/router/operators'
 
 import {
   fetchAllArticles,
@@ -18,9 +17,7 @@ import {
 import { authenticate } from './actions'
 import { routeTo } from './factories'
 
-export const redirectToLogin = sequence('Redirect to login', [
-  redirectToSignal('pageRouted', { page: 'login' }),
-])
+export const redirectToLogin = sequence('Redirect to login', [])
 
 export const routeToHome = routeTo('home', [
   set(state`blog.currentArticlePage`, 1),
@@ -38,7 +35,7 @@ export const routeToPage = routeTo(props`page`, [
     login: [],
     register: [],
     settings: [set(state`lastVisited`, 'settings'), authenticate],
-    otherwise: redirectToSignal('homeRouted'),
+    otherwise: [],
   },
 ])
 
@@ -49,7 +46,7 @@ export const routeToArticle = routeTo('article', [
       set(state`blog.currentArticleSlug`, props`slug`),
       fetchCurrentArticle,
     ],
-    false: redirectToSignal('homeRouted'),
+    false: [],
   },
 ])
 
@@ -84,7 +81,7 @@ export const routeToProfile = routeTo('profile', [
         false: fetchCreatedArticles,
       },
     ],
-    false: redirectToSignal('homeRouted'),
+    false: [],
   },
 ])
 

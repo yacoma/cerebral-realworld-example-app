@@ -1,5 +1,5 @@
 import { sequence } from 'cerebral'
-import { state, string, props, resolveObject } from 'cerebral/tags'
+import { state, string, props } from 'cerebral/tags'
 import {
   set,
   unset,
@@ -15,7 +15,6 @@ import {
   httpPut,
   httpDelete,
 } from '@cerebral/http/operators'
-import { redirectToSignal } from '@cerebral/router/operators'
 
 import { articlesOffset } from '../../computed'
 import { removeEmptyFields } from '../../factories'
@@ -127,18 +126,11 @@ export const editArticle = sequence('Edit article', [
   set(state`blog.editorForm.article.tagList`, []),
   actions.setArticles,
   set(state`blog.editorFormIsLoading`, false),
-  redirectToSignal(
-    'articleRouted',
-    resolveObject({
-      slug: state`blog.currentArticleSlug`,
-    })
-  ),
 ])
 
 export const deleteArticle = sequence('Delete Article', [
   httpDelete(string`/articles/${state`blog.currentArticleSlug`}`),
   unset(state`blog.articles.${state`blog.currentArticleSlug`}`),
-  redirectToSignal('homeRouted'),
 ])
 
 export const toggleFavoriteArticle = sequence('Toggle favorite article', [
@@ -161,7 +153,6 @@ export const toggleFavoriteArticle = sequence('Toggle favorite article', [
       },
       set(state`blog.toggleFavoriteIsLoading`, false),
     ],
-    false: redirectToSignal('pageRouted', { page: 'login' }),
   },
 ])
 

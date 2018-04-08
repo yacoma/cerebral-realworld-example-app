@@ -2,7 +2,6 @@ import { sequence } from 'cerebral'
 import { state, string, props } from 'cerebral/tags'
 import { set, when } from 'cerebral/operators'
 import { httpGet, httpDelete, httpPost } from '@cerebral/http/operators'
-import { redirectToSignal } from '@cerebral/router/operators'
 
 import { articlesOffset } from '../../computed'
 import { setArticles, clearArticles } from '../blog/actions'
@@ -25,7 +24,7 @@ export const toggleFollowUser = sequence('Toggle follow user', [
       },
       set(state`profile.toggleFollowIsLoading`, false),
     ],
-    false: redirectToSignal('pageRouted', { page: 'login' }),
+    false: [],
   },
 ])
 

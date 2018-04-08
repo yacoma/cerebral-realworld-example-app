@@ -1,8 +1,7 @@
 import { sequence } from 'cerebral'
-import { state, props, resolveObject } from 'cerebral/tags'
+import { state, props } from 'cerebral/tags'
 import { set, equals, when } from 'cerebral/operators'
 import { httpPost, httpPut } from '@cerebral/http/operators'
-import { redirectToSignal } from '@cerebral/router/operators'
 
 import { removeEmptyFields } from '../../factories'
 import { fetchArticlesFeed, fetchAllArticles } from '../blog/sequences'
@@ -15,16 +14,11 @@ const redirectToLastVisited = sequence('Redirect to last visited page', [
     true: [
       equals(state`lastVisited`),
       {
-        editor: redirectToSignal('editorRouted'),
-        otherwise: redirectToSignal(
-          'pageRouted',
-          resolveObject({
-            page: state`lastVisited`,
-          })
-        ),
+        editor: [],
+        otherwise: [],
       },
     ],
-    false: redirectToSignal('homeRouted'),
+    false: [],
   },
 ])
 
@@ -77,7 +71,6 @@ export const logoutUser = sequence('Log user out', [
   set(state`auth.loginFormIsLoading`, false),
   actions.removeUser,
   fetchAllArticles,
-  redirectToSignal('homeRouted'),
 ])
 
 export const changeSettings = sequence('Change settings', [
@@ -94,7 +87,6 @@ export const changeSettings = sequence('Change settings', [
       set(state`errorMessages`, []),
       actions.setUser,
       set(state`auth.settingsFormIsLoading`, false),
-      redirectToSignal('homeRouted'),
     ],
     error: [
       set(state`auth.settingsForm.user.password`, ''),
