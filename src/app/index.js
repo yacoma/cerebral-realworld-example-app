@@ -2,7 +2,7 @@ import { Module } from 'cerebral'
 import HttpProvider from '@cerebral/http'
 import storage from '@cerebral/storage'
 
-import { API_URL } from '../constants'
+import { apiUrl } from '../constants'
 import blog from './modules/blog'
 import profile from './modules/profile'
 import auth from './modules/auth'
@@ -39,7 +39,7 @@ export default Module({
   },
   providers: {
     http: HttpProvider({
-      baseUrl: API_URL,
+      baseUrl: apiUrl,
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
         Accept: 'application/json',

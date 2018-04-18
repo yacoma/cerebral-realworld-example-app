@@ -22,9 +22,6 @@
     "linebreak-style": ["error", "unix"]
   },
   "globals": {
-    "localStorage": true,
-    "apiUrl": true,
-    "authHeader": true,
-    "jsonResponse": true
+    "localStorage": true
   }
 }

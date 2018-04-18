@@ -2,6 +2,7 @@ import HttpProvider from '@cerebral/http'
 import StorageModule from '@cerebral/storage'
 import { runAction } from 'cerebral/test'
 
+import * as constants from '../../../constants.js'
 import * as actions from './actions'
 
 test('should initialize user', () => {
@@ -15,7 +16,7 @@ test('should initialize user', () => {
       response: {
         result: {
           user: {
-            token: authHeader.validJWT,
+            token: constants.authHeader.validJWT,
           },
         },
       },
@@ -27,14 +28,14 @@ test('should initialize user', () => {
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           Accept: 'application/json',
-          Authorization: 'Token ' + authHeader.validJWT,
+          Authorization: 'Token ' + constants.authHeader.validJWT,
         },
       }),
     },
   }).then(({ state }) => [
     expect(state.auth.authenticated).toBe(true),
     expect(localStorage.getItem('jwtHeader')).toBe(
-      '"' + authHeader.validJWT + '"'
+      '"' + constants.authHeader.validJWT + '"'
     ),
   ])
 })
@@ -68,7 +69,10 @@ test('should set user state', () => {
 })
 
 test('should remove current user state', () => {
-  localStorage.setItem('jwtHeader', JSON.stringify(authHeader.validJWT))
+  localStorage.setItem(
+    'jwtHeader',
+    JSON.stringify(constants.authHeader.validJWT)
+  )
 
   return runAction(actions.removeUser, {
     state: {
@@ -87,7 +91,7 @@ test('should remove current user state', () => {
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           Accept: 'application/json',
-          Authorization: 'Token ' + authHeader.validJWT,
+          Authorization: 'Token ' + constants.authHeader.validJWT,
         },
       }),
     },

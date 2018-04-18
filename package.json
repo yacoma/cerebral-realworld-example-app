@@ -61,7 +61,6 @@
     "setupFiles": [
       "jest-localstorage-mock"
     ],
-    "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
     "testMatch": [
       "<rootDir>/src/**/*.test.js"
     ],

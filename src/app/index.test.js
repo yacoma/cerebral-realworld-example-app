@@ -1,6 +1,7 @@
 import mock from 'xhr-mock'
 import { CerebralTest } from 'cerebral/test'
 
+import * as constants from '../constants.js'
 import { AuthenticationError } from './errors'
 import app from '.'
 
@@ -13,19 +14,19 @@ beforeEach(() => {
     return res
       .status(200)
       .header('Content-Type', 'application/json')
-      .body(jsonResponse.articles)
+      .body(constants.jsonResponse.articles)
   })
   mock.get(/^.*\/tags\/?$/, (req, res) => {
     return res
       .status(200)
       .header('Content-Type', 'application/json')
-      .body(jsonResponse.tags)
+      .body(constants.jsonResponse.tags)
   })
-  mock.get(apiUrl + '/user', (req, res) => {
+  mock.get(constants.apiUrl + '/user', (req, res) => {
     return res
       .status(200)
       .header('Content-Type', 'application/json')
-      .body(jsonResponse.user)
+      .body(constants.jsonResponse.user)
   })
 
   cerebral = CerebralTest(app)
@@ -34,7 +35,10 @@ beforeEach(() => {
 test('should authenticate when valid token in localStorage', async () => {
   expect.assertions(5)
 
-  localStorage.setItem('jwtHeader', JSON.stringify(authHeader.validJWT))
+  localStorage.setItem(
+    'jwtHeader',
+    JSON.stringify(constants.authHeader.validJWT)
+  )
   cerebral.setState('hasAuthenticated', false)
 
   await cerebral

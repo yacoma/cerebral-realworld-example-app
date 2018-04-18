@@ -1,6 +1,7 @@
 import mock from 'xhr-mock'
 import { CerebralTest } from 'cerebral/test'
 
+import * as constants from '../../../constants.js'
 import app from '../..'
 
 let cerebral
@@ -12,19 +13,19 @@ beforeEach(() => {
     return res
       .status(200)
       .header('Content-Type', 'application/json')
-      .body(jsonResponse.articles)
+      .body(constants.jsonResponse.articles)
   })
   mock.get(/^.*\/tags\/?$/, (req, res) => {
     return res
       .status(200)
       .header('Content-Type', 'application/json')
-      .body(jsonResponse.tags)
+      .body(constants.jsonResponse.tags)
   })
-  mock.get(apiUrl + '/user', (req, res) => {
+  mock.get(constants.apiUrl + '/user', (req, res) => {
     return res
       .status(200)
       .header('Content-Type', 'application/json')
-      .body(jsonResponse.user)
+      .body(constants.jsonResponse.user)
   })
   cerebral = CerebralTest(app)
 })
@@ -48,17 +49,17 @@ test('should be logged out', async () => {
 test('should login', async () => {
   expect.assertions(6)
 
-  mock.post(apiUrl + '/users/login', (req, res) => {
+  mock.post(constants.apiUrl + '/users/login', (req, res) => {
     return res
       .status(200)
       .header('Content-Type', 'application/json')
-      .header('Authorization', 'Token ' + authHeader.validJWT)
+      .header('Authorization', 'Token ' + constants.authHeader.validJWT)
       .body(
         JSON.stringify({
           user: {
             email: 'test@example.com',
             username: 'Tester',
-            token: authHeader.validJWT,
+            token: constants.authHeader.validJWT,
             bio: '',
             image: '',
           },
@@ -70,7 +71,7 @@ test('should login', async () => {
     return res
       .status(200)
       .header('Content-Type', 'application/json')
-      .body(jsonResponse.articles)
+      .body(constants.jsonResponse.articles)
   })
 
   cerebral.setState('auth.loginForm.user.email', 'test@example.com')
@@ -85,7 +86,7 @@ test('should login', async () => {
       expect(state.auth.loginForm.user.email).toBe(''),
       expect(state.auth.loginForm.user.password).toBe(''),
       expect(localStorage.getItem('jwtHeader')).toBe(
-        '"' + authHeader.validJWT + '"'
+        '"' + constants.authHeader.validJWT + '"'
       ),
     ])
 })
@@ -93,7 +94,7 @@ test('should login', async () => {
 test('should not log in when wrong password', async () => {
   expect.assertions(4)
 
-  mock.post(apiUrl + '/users/login', (req, res) => {
+  mock.post(constants.apiUrl + '/users/login', (req, res) => {
     return res
       .status(422)
       .header('Content-Type', 'application/json')
@@ -122,17 +123,17 @@ test('should not log in when wrong password', async () => {
 test('should login on registration', async () => {
   expect.assertions(8)
 
-  mock.post(apiUrl + '/users', (req, res) => {
+  mock.post(constants.apiUrl + '/users', (req, res) => {
     return res
       .status(201)
       .header('Content-Type', 'application/json')
-      .header('Authorization', 'Token ' + authHeader.validJWT)
+      .header('Authorization', 'Token ' + constants.authHeader.validJWT)
       .body(
         JSON.stringify({
           user: {
             email: 'test@example.com',
             username: 'Tester',
-            token: authHeader.validJWT,
+            token: constants.authHeader.validJWT,
             bio: '',
             image: '',
           },
@@ -144,7 +145,7 @@ test('should login on registration', async () => {
     return res
       .status(200)
       .header('Content-Type', 'application/json')
-      .body(jsonResponse.articles)
+      .body(constants.jsonResponse.articles)
   })
 
   cerebral.setState('auth.registerForm.user.username', 'Tester')
@@ -161,7 +162,7 @@ test('should login on registration', async () => {
       expect(state.auth.currentUser.email).toBe('test@example.com'),
       expect(state.auth.currentUser.username).toBe('Tester'),
       expect(localStorage.getItem('jwtHeader')).toBe(
-        '"' + authHeader.validJWT + '"'
+        '"' + constants.authHeader.validJWT + '"'
       ),
       expect(state.currentPage).toBe('settings'),
       expect(state.auth.registerForm.user.username).toBe(''),
@@ -173,7 +174,7 @@ test('should login on registration', async () => {
 test('should not register when email exists', async () => {
   expect.assertions(4)
 
-  mock.post(apiUrl + '/users', (req, res) => {
+  mock.post(constants.apiUrl + '/users', (req, res) => {
     return res
       .status(422)
       .header('Content-Type', 'application/json')
