@@ -1,6 +1,7 @@
 {
   "name": "cerebral-realworld-example-app",
   "version": "0.1.0",
+  "main": "./public/index.html",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yacoma/cerebral-realworld-example-app.git"
