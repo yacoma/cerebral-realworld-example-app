@@ -6,5 +6,6 @@ deploylive:
 	npm install
 	rm -rf build
 	npm run build
-	rm -rf ../build
-	cp -a build ..
+	rm -rf ../client/build
+	mkdir -p ../client
+	cp -a build ../client
