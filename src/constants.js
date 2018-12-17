@@ -1,4 +1,4 @@
-export const apiUrl = 'https://conduit.yacoma.it/api'
+export const apiUrl = 'https://conduit.productionready.io/api'
 
 export const authHeader = {
   validJWT:
