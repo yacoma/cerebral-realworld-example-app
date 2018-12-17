@@ -18,10 +18,10 @@ export default Module({
         title: '',
         description: '',
         body: '',
-        tagInput: '',
         tagList: [],
       },
     },
+    tagInput: '',
     editorFormIsLoading: false,
     postCommentForm: {
       comment: {

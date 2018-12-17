@@ -123,7 +123,7 @@ export const editArticle = sequence('Edit article', [
   set(state`blog.editorForm.article.title`, ''),
   set(state`blog.editorForm.article.description`, ''),
   set(state`blog.editorForm.article.body`, ''),
-  set(state`blog.editorForm.article.tagInput`, ''),
+  set(state`blog.tagInput`, ''),
   set(state`blog.editorForm.article.tagList`, []),
   actions.setArticles,
   set(state`blog.editorFormIsLoading`, false),
@@ -192,11 +192,8 @@ export const fetchTags = sequence('Fetch Tags', [
 ])
 
 export const addTag = sequence('Add Tag to list', [
-  push(
-    state`blog.editorForm.article.tagList`,
-    state`blog.editorForm.article.tagInput`
-  ),
-  set(state`blog.editorForm.article.tagInput`, ''),
+  push(state`blog.editorForm.article.tagList`, state`blog.tagInput`),
+  set(state`blog.tagInput`, ''),
 ])
 
 export const removeTag = sequence('Remove Tag from list', [
