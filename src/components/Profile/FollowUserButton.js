@@ -29,8 +29,8 @@ export default connect(
         className={followButtonClass}
         onClick={() => toggleFollowClicked({ username: profile.username })}
       >
-        <i className="ion-plus-round" />&nbsp;{' '}
-        {profile.following ? 'Unfollow' : 'Follow'} {profile.username}
+        <i className="ion-plus-round" />
+        &nbsp; {profile.following ? 'Unfollow' : 'Follow'} {profile.username}
       </button>
     )
   }

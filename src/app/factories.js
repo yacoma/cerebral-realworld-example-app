@@ -32,7 +32,7 @@ export const removeEmptyFields = (form) =>
     const formState = state.get(form)
     const formKey = Object.keys(formState)[0]
     const formObject = formState[formKey]
-    let cleanedForm = Object.keys(formObject).reduce(
+    const cleanedForm = Object.keys(formObject).reduce(
       (cleanedFormObject, field) => {
         if (formObject[field].length) {
           cleanedFormObject[field] = formObject[field]

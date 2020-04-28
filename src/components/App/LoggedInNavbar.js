@@ -28,7 +28,8 @@ export default connect(
             className={`nav-link${currentPage === 'editor' ? ' active' : ''}`}
             href="/#/editor"
           >
-            <i className="ion-compose" />&nbsp;New Article
+            <i className="ion-compose" />
+            &nbsp;New Article
           </a>
         </li>
         <li className="nav-item">
@@ -36,7 +37,8 @@ export default connect(
             className={`nav-link${currentPage === 'settings' ? ' active' : ''}`}
             href="/#/settings"
           >
-            <i className="ion-gear-a" />&nbsp;Settings
+            <i className="ion-gear-a" />
+            &nbsp;Settings
           </a>
         </li>
         <li className="nav-item">

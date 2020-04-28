@@ -32,7 +32,8 @@ export default connect(
             className="btn btn-outline-secondary btn-sm"
             href={`/#/editor/${slug}`}
           >
-            <i className="ion-edit" />&nbsp;Edit Article
+            <i className="ion-edit" />
+            &nbsp;Edit Article
           </a>
           &nbsp;&nbsp;
           <button
@@ -63,16 +64,16 @@ export default connect(
           className={followButtonClass}
           onClick={() => toggleFollowClicked({ username: author.username })}
         >
-          <i className="ion-plus-round" />&nbsp;{' '}
-          {author.following ? 'Unfollow' : 'Follow'} {author.username}
+          <i className="ion-plus-round" />
+          &nbsp; {author.following ? 'Unfollow' : 'Follow'} {author.username}
         </button>
         &nbsp;&nbsp;
         <button
           className={favoriteButtonClass}
           onClick={() => toggleFavoriteClicked({ slug: slug })}
         >
-          <i className="ion-heart" />&nbsp;{' '}
-          {article.favorited ? 'Unfavorite' : 'Favorite'} Article{' '}
+          <i className="ion-heart" />
+          &nbsp; {article.favorited ? 'Unfavorite' : 'Favorite'} Article{' '}
           <span className="counter">({article.favoritesCount})</span>
         </button>
       </span>

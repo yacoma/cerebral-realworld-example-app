@@ -10,7 +10,8 @@ export default function Profile({ isCurrentUser }) {
       className="btn btn-sm btn-outline-secondary action-btn"
       href="/#/settings"
     >
-      <i className="ion-gear-a" />&nbsp;Edit Profile Settings
+      <i className="ion-gear-a" />
+      &nbsp;Edit Profile Settings
     </a>
   )
 }
